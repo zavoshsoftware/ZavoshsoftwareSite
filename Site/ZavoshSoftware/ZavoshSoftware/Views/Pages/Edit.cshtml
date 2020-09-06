@@ -1,0 +1,147 @@
+﻿@model ViewModels.PagePositionCrudViewModel
+
+@{
+    ViewBag.Title = "ویرایش " + Server.HtmlDecode(Html.DisplayNameFor(model => model).ToString());
+    Layout = "~/Views/Shared/BackEndLayout/_BackEndLayout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Edit", "Pages",FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">        
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Page.Id)
+        @Html.HiddenFor(model => model.Page.AverageRate)
+        
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Page.Order, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Page.Order)
+
+                @Html.ValidationMessageFor(model => model.Page.Order)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Page.Title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                                  @Html.EditorFor(model => model.Page.Title)
+                @Html.ValidationMessageFor(model => model.Page.Title)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Page.TitleTag, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Page.TitleTag)
+
+                @Html.ValidationMessageFor(model => model.Page.TitleTag)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Page.UrlParameter, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                                  @Html.EditorFor(model => model.Page.UrlParameter)
+                @Html.ValidationMessageFor(model => model.Page.UrlParameter)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Page.Summery, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                                  @Html.EditorFor(model => model.Page.Summery)
+                @Html.ValidationMessageFor(model => model.Page.Summery)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Page.Body, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                                  @Html.EditorFor(model => model.Page.Body)
+                @Html.ValidationMessageFor(model => model.Page.Body)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Page.ImageUrl, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                                  @Html.Kendo().Upload().Name("fileUpload").Multiple(false)
+	 @Html.HiddenFor(model => model.Page.ImageUrl)
+                @Html.ValidationMessageFor(model => model.Page.ImageUrl)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Page.PageGroupId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("PageGroupId", String.Empty)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Page.Notation, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Page.Notation)
+
+                @Html.ValidationMessageFor(model => model.Page.Notation)
+            </div>
+        </div>
+            
+        <div class="form-group">
+            @Html.LabelFor(model => model.Page.MetaDescription, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Page.MetaDescription)
+
+                @Html.ValidationMessageFor(model => model.Page.MetaDescription)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Page.IsActive, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Page.IsActive)
+
+                @Html.ValidationMessageFor(model => model.Page.IsActive)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Page.HasFaq, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Page.HasFaq)
+
+                @Html.ValidationMessageFor(model => model.Page.HasFaq)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Page.FaqTitle, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Page.FaqTitle)
+
+                @Html.ValidationMessageFor(model => model.Page.FaqTitle)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">موقعیت</label>
+            <div class="col-md-10 ">
+                @for (int i = 0; i < Model.Positions.Count; i++)
+                {
+                    @Html.CheckBoxFor(x => x.Positions[i].Checked)
+                    @Model.Positions[i].Title
+                    @Html.HiddenFor(x => x.Positions[i].Id)
+                    <br />
+                }
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.Page.CreationDate)
+        <div class="form-group" id="buttons">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ثبت" class="btn btn-primary" />
+				@Html.ActionLink("بازگشت به فهرست", "Index")
+            </div>
+        </div>
+    </div>
+}
+

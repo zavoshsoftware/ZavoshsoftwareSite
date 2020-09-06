@@ -1,0 +1,54 @@
+﻿@model ViewModels.BlogListViewModel
+
+@{
+    ViewBag.ogType = "article";
+    ViewBag.ogUrl = "https://zavoshsoftware.com/blog";
+    ViewBag.ogImage = "https://zavoshsoftware.com/Images/backgrounds/logozavosh.png";
+    ViewBag.ogSitename = "شرکت زاوش";
+}
+
+<div id="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb">
+                    <li><a href="#">زاوش</a></li>
+                    <li class="active">@Model.PageGroupTitle</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="blog-article-details">
+                <h1>@Model.PageGroupTitle</h1>
+                <p><a href="#">@Model.PageGroupBody</a></p>
+            </div>
+            @foreach (var page in Model.Portfolio)
+            {
+                <div class="col-sm-4">
+                    <div class="blog-article">
+                        <div class="blog-article-thumbnail">
+                            <img src="@page.ImageUrl" alt="@page.Title">
+                            <div class="blog-article-hover"><a class="zoom-action" href="/page/@page.UrlParameter"><i class="fa fa-eye"></i></a></div>
+                        </div>
+                        <div class="blog-article-details">
+                            <h6>@page.LastModificationDate.Value.ToShortDateString()</h6>
+                            <h4><a href="/page/@page.UrlParameter">@page.Title</a></h4>
+                            <p>
+                                <i class="miu-icon-editor_folder_add_outline_stroke"></i>
+                                <a href="/blog/@page.PageGroup.UrlParameter">@page.PageGroup.Title</a><br class="visible-xs">
+                            </p>
+                        </div>
+                        <p>@page.Summery</p>
+                        <a class="btn btn-default" href="/page/@page.UrlParameter">ادامه مطلب</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿body {
+}
+.rating {
+    direction: ltr;
+    text-align: right;
+}
+.rating-link {
+    margin-top:27px;
+}
+#submitRating
+{
+    margin-right:10px;
+}
+
+.blog-article-details p {
+    direction: rtl;
+}

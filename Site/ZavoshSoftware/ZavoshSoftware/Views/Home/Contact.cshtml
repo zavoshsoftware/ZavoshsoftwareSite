@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "اطلاعات تماس زاوش";
+}
+
+<div id="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+
+                <ol class="breadcrumb">
+                    <li><a href="#">زاوش</a></li>
+                    <li class="active">تماس با ما</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="headline style-3">
+
+               
+                <h2>با ما در تماس باشید</h2>
+                <p>از طریق راه های ارتباطی زیر می توانید با ما در تماس باشید و در صورتی که سوالی دارید می توانید از طریق فرم زیر سوالات خود را بپرسید.</p>
+
+            </div><!-- headline -->
+
+        </div><!-- col -->
+    </div><!-- row -->
+</div><!-- container -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5">
+
+            <div id="contact-form">
+                <div class="alert alert-danger" id="errorDivQ"></div>
+                <div class="alert alert-success" id="SuccessDivQ">با تشکر، پیغام شما با موفقیت ثبت گردید.</div>
+                <fieldset>
+
+                    <div id="alert-area"></div>
+
+                    <input class="col-xs-12" id="name" type="text" name="name" placeholder="نام">
+
+                    <input class="col-xs-12" id="email" type="text" name="email" placeholder="ایمیل">
+
+
+                    <textarea class="col-xs-12" id="message" name="message" rows="8" cols="25" placeholder="متن پیغام"></textarea>
+
+                    <input class="btn btn-default" id="submit" type="button" value="ثبت">
+
+                </fieldset>
+            </div>
+
+        </div><!-- col -->
+        <div class="col-sm-5">
+
+            <div class="widget widget-contact">
+
+                <h3 class="widget-title">اطلاعات تماس</h3>
+
+                <ul>
+                    <li>
+                        <span>آدرس:</span>
+                        تهران، آجودانیه (شهید سباری)، پلاک 5، واحد 2
+                    </li>
+                    <li>
+                        <span>تلفن</span>
+                        0098-21-26910970<br>
+                        @*0098-21-22805105*@
+                    </li>
+                    <li>
+                        <span>E-mail</span>
+                        <a href="mailto:support@zavoshsoftware.com">support@zavoshsoftware.com</a>
+                    </li>
+                </ul>
+
+            </div><!-- widget-contact -->
+
+        </div><!-- col -->
+    </div><!-- row -->
+</div><!-- container -->
+
+@*<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3237.1212183596867!2d51.3760269!3d35.7723986!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xccc966e480eeb290!2sZeus+advanced+systems+consulting+(Zavosh)!5e0!3m2!1sen!2s!4v1538213982096" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+        </div>
+    </div>
+</div>*@
+
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#submit").click(function () {
+                var nameVal = $('#name').val();
+                var emailVal = $('#email').val();
+                var messageVal = $('#message').val();
+
+                if (nameVal != "" && messageVal != "" && emailVal!=="") {
+                    $.ajax(
+                        {
+                            url: "/ContactUsForms/SubmitContactForm",
+                            data: { Name: nameVal, Email: emailVal, Message: messageVal },
+                            type: "GET"
+                        }).done(function (result) {
+                        if (result == 'true') {
+                            $('#errorDivQ').css('display', 'none');
+                            $('#SuccessDivQ').css('display', 'block');
+                        }
+                        else
+                        {
+                            $('#errorDivQ').css('display', 'block');
+                            $('#SuccessDivQ').css('display', 'none');
+                            $('#errorDivQ').html('ایمیل وارد شده صحیح نمی باشد.');
+                        }
+                    });
+                }
+                else {
+                    $('#errorDivQ').css('display', 'block');
+                    $('#SuccessDivQ').css('display', 'none');
+                    $('#errorDivQ').html('تمامی فیلد های زیر را تکمیل نمایید.');
+
+                }
+            });
+        });
+    </script>
+}
