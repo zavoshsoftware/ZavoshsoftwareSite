@@ -1157,6 +1157,10 @@
     <Compile Include="Migrations\202005200643354_V26.Designer.cs">
       <DependentUpon>202005200643354_V26.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009081119087_V27.cs" />
+    <Compile Include="Migrations\202009081119087_V27.Designer.cs">
+      <DependentUpon>202009081119087_V27.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
@@ -1504,6 +1508,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005200643354_V26.resx">
       <DependentUpon>202005200643354_V26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009081119087_V27.resx">
+      <DependentUpon>202009081119087_V27.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

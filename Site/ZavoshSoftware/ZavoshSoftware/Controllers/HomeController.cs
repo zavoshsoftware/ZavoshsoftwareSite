@@ -28,6 +28,9 @@ namespace ZavoshSoftware.Controllers
                 DetailServicePages = GetPages(new Guid("28B4C30B-F5E4-4C82-A67E-9109E9F28CD1")),
                 BlogList = GetPagesByGroup(new Guid("ECD18815-6452-4A49-805D-A99533EFEE6E"))
                     .OrderByDescending(current => current.CreationDate).Take(3).ToList(),
+                PortfolioList =
+                    db.Portfolios.Where(current => current.IsInHome && current.IsActive && current.IsDelete == false)
+                        .Take(3).ToList()
             };
             ViewBag.Canonical = "https://zavoshsoftware.com";
 

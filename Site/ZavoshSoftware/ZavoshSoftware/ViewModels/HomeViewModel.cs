@@ -11,5 +11,6 @@ namespace ViewModels
         public List<Page> ServicePages { get; set; }
         public List<Page> DetailServicePages { get; set; }
         public List<Page> BlogList { get; set; }
+        public List<Portfolio> PortfolioList { get; set; }
     }
 }

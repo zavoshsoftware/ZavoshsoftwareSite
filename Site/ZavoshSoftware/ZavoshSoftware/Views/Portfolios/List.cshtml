@@ -1,65 +1,75 @@
 ﻿@model ViewModels.PortfolioListViewModel
 @{
 
-    ViewBag.description = " نمونه کارهای طراحی وب سایت و اپلیکیشن موبایل به همراه قیمت طراحی سایت و قیمت طراحی اپلیکیشن موبایل";
-    ViewBag.ogType = "article";
-    ViewBag.ogUrl = "https://zavoshsoftware.com/portfolio";
-    ViewBag.ogImage = "https://zavoshsoftware.com/Images/backgrounds/logozavosh.png";
-    ViewBag.ogSitename = "شرکت زاوش";
+		ViewBag.description = " نمونه کارهای طراحی وب سایت و اپلیکیشن موبایل به همراه قیمت طراحی سایت و قیمت طراحی اپلیکیشن موبایل";
+		ViewBag.ogType = "article";
+		ViewBag.ogUrl = "https://zavoshsoftware.com/portfolio";
+		ViewBag.ogImage = "https://zavoshsoftware.com/Images/backgrounds/logozavosh.png";
+		ViewBag.ogSitename = "شرکت زاوش";
 }
 
 <div id="page-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-            </div>
-            <div class="col-sm-6">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+			</div>
+			<div class="col-sm-6">
 
-                <ol class="breadcrumb">
-                    <li><a href="#">زاوش</a></li>
-                    <li class="active">@Model.PageGroupTitle</li>
-                </ol>
-            </div>
-        </div>
-    </div>
+				<ol class="breadcrumb">
+					<li><a href="#">زاوش</a></li>
+					<li class="active">@Model.PageGroupTitle</li>
+				</ol>
+			</div>
+		</div>
+	</div>
 </div>
 
 
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="blog-article-details">
-                <h1>@Model.PageGroupTitle</h1>
-                <p>
-                    <a href="#">@Model.PageGroupBody</a>
-                </p>
-            </div>
-            
-            @foreach (var page in Model.Portfolio)
-            {
-                <div class="portfolio-item classic">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="portfolio-item-thumbnail">
-                                <img src="@page.ImageUrl" alt="@page.Title">
-                                <div class="portfolio-item-hover">
-                                    <a href="/Portfoliodetail/@page.UrlParameter"><i class="fa fa-plus"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="portfolio-item-description">
-                                <h2><a href="/Portfoliodetail/@page.UrlParameter">@page.Title</a></h2>
-                                <h3><a href="/portfolio/@page.PortfolioGroup.UrlParameter">@page.PortfolioGroup.Title</a></h3>
-                                <p>
-                                  @page.Summery
-                                </p>
-                                <a class="btn btn-default" href="/Portfoliodetail/@page.UrlParameter">مطالعه بیشتر</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="blog-article-details">
+				<h1>@Model.PageGroupTitle</h1>
+				<p>
+					<a href="#">@Model.PageGroupBody</a>
+				</p>
+			</div>
+			<div class="portfolio-item classic">
+				<div class="row">
+					@foreach (var page in Model.Portfolio)
+					{
+							<div class="col-md-4">
+								<a href="/portfoliodetail/@page.UrlParameter">
+									<img src="@page.ImageUrl" alt="@page.Title">
+								</a>
+								<h2>
+									<a href="/portfoliodetail/@page.UrlParameter">@page.Title</a>
+								</h2>
+							</div>
+							@*<div class="col-sm-6">
+									<div class="portfolio-item-thumbnail">
+										<img src="@page.ImageUrl" alt="@page.Title">
+										<div class="portfolio-item-hover">
+											<a href="/Portfoliodetail/@page.UrlParameter"><i class="fa fa-plus"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="portfolio-item-description">
+										<h2><a href="/Portfoliodetail/@page.UrlParameter">@page.Title</a>
+										</h2>
+										<h3><a href="/portfolio/@page.PortfolioGroup.UrlParameter">@page.PortfolioGroup.Title</a>
+										</h3>
+										<p>
+											@page.Summery
+										</p>
+										<a class="btn btn-default" href="/Portfoliodetail/@page.UrlParameter">مطالعه بیشتر</a>
+									</div>
+								</div>*@
+
+					}
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

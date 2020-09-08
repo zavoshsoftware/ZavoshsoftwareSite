@@ -28,7 +28,7 @@
 				<h1>@Model.PageGroupTitle</h1>
 				<p><a href="#">@Model.PageGroupBody</a></p>
 			</div>
-			@foreach (var page in Model.Blogs)
+			@foreach (var page in Model.Portfolio)
             {
 					<div class="col-sm-4">
 						<div class="blog-article">
@@ -44,7 +44,7 @@
 									<a href="/blog/@page.PageGroup.UrlParameter">@page.PageGroup.Title</a><br class="visible-xs">
 								</p>
 							</div>
-							<p>@page.Summery</p>
+							<p style="min-height: 80px;">@page.Summery</p>
 							<a class="btn btn-default" href="/page/@page.UrlParameter">ادامه مطلب</a>
 						</div>
 					</div>

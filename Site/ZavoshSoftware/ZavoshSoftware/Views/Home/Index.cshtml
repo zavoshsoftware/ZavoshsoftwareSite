@@ -1,263 +1,313 @@
 ﻿@model ViewModels.HomeViewModel
 @{
-    ViewBag.Title = "طراحی سایت و اپلیکیشن موبایل - زاوش";
-    Layout = "~/Views/Shared/FrontEndLayout/_FrontEndLayout.cshtml";
-    ViewBag.description = "طراحی سایت و اپلیکیشن موبایل با استفاده از جدیدترین متودولوژی های روز و طراحی سایت فروشگاهی و اپلیکیشن اندروید و ios از دیگر خدمات شرکت زاوش می باشد.";
-    ViewBag.ogType = "website";
-    ViewBag.ogUrl = "https://zavoshsoftware.com";
-    ViewBag.ogImage = "https://zavoshsoftware.com/Images/backgrounds/logozavosh.png";
-    ViewBag.ogSitename = "شرکت زاوش";
+		ViewBag.Title = "طراحی سایت و اپلیکیشن موبایل - زاوش";
+		Layout = "~/Views/Shared/FrontEndLayout/_FrontEndLayout.cshtml";
+		ViewBag.description = "طراحی سایت و اپلیکیشن موبایل با استفاده از جدیدترین متودولوژی های روز و طراحی سایت فروشگاهی و اپلیکیشن اندروید و ios از دیگر خدمات شرکت زاوش می باشد.";
+		ViewBag.ogType = "website";
+		ViewBag.ogUrl = "https://zavoshsoftware.com";
+		ViewBag.ogImage = "https://zavoshsoftware.com/Images/backgrounds/logozavosh.png";
+		ViewBag.ogSitename = "شرکت زاوش";
 }
 @section StructuredData
 {
-    <script type="application/ld+json">
-    {
-    "@@context": "http://schema.org",
-    "@@type": "Organization",
-    "name": "Zavosh",
-    "alternateName": "Zavosh",
-    "url": "https://zavoshsoftware.com",
-    "logo": "https://zavoshsoftware.com/Images/backgrounds/logozavosh.png",
-    "contactPoint": [{
-    "@@type": "ContactPoint",
-    "telephone": "+982126910970",
-    "contactType": "customer service",
-    "areaServed": "IR",
-    "availableLanguage": "Persian"
-    },{
-    "@@type": "ContactPoint",
-    "telephone": "+982126910970",
-    "contactType": "technical support",
-    "areaServed": "IR",
-    "availableLanguage": "Persian"
-    },{
-    "@@type": "ContactPoint",
-    "telephone": "+982126910970",
-    "contactType": "sales",
-    "areaServed": "IR",
-    "availableLanguage": "Persian"
-    }],
-    "sameAs": [
-    "https://www.instagram.com/zavosh.software/",
-    "https://www.facebook.com/Zavosh-654995381263130"
-    ]
-    }
-</script>
-    <script type="application/ld+json">
-        {
-        "@@context": "https://schema.org",
-        "@@type": "FAQPage",
-        "mainEntity": [{
-        "@@type": "Question",
-        "name": "مزیت طراحی سایت و اپلیکیشن توسط زاوش چیست؟",
-        "acceptedAnswer": {
-        "@@type": "Answer",
-        "text": "شرکت زاوش با بهره گیری از برنامه نویسان خبره و باتجربه پروژه های وب سایت و اپلیکیشن موبایل مشتریان را در سریعترین زمان ممکن و با کمترین خطا به آن ها تحویل می دهد. تجارب کاری با برندهای بزرگ، نتیجه خروجی با کیفیت ما می باشد.<a href='https://zavoshsoftware.com/page/%D8%B7%D8%B1%D8%A7%D8%AD%DB%8C-%D8%A7%D9%BE%D9%84%DB%8C%DA%A9%DB%8C%D8%B4%D9%86-%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84'>مشاهده امکانات اپلیکیشن موبایل</a>"
-        }
-        },{
-        "@@type": "Question",
-        "name": "برای شروع کار وب سایت بهتر است یا اپلیکیشن؟",
-        "acceptedAnswer": {
-        "@@type": "Answer",
-        "text": "پاسخ این سوال بسته به نوع کسب و کار و نوع امکانات مورد نیاز شما متفاوت است. فقط به این موضوع توجه کنید که مجاب کردن کاربران برای نصب اپلیکیشن بسیار سخت است اما اگر بر روی وب سایت خود کارهای سئو را انجام دهید، کاربران از طریق گوگل شما را پیدا می کنند. <a href='https://zavoshsoftware.com/page/%D8%B3%D8%A6%D9%88'>مشاهده خدمات سئو</a>"
-        }
-        },{
-        "@@type": "Question",
-        "name": "قیمت طراحی سایت و اپلیکیشن چقدر است؟",
-        "acceptedAnswer": {
-        "@@type": "Answer",
-        "text": "هزینه طراحی سایت و اپلیکیشن بستگی به امکانات سایت و اپلیکیشن شما دارد. جهت مشاوره و دریافت پیشنهاد قیمت با شماره تلفن 02126910970 تماس بگیرید. <a href='https://zavoshsoftware.com/page/%D8%B7%D8%B1%D8%A7%D8%AD%DB%8C-%D9%88%D8%A8-%D8%B3%D8%A7%DB%8C%D8%AA'>ویژگی وب سایت های زاوش</a>"
-        }
-        }
-        ,{
-        "@@type": "Question",
-        "name": "چگونه وب سایت ما به رتبه 1 گوگل برسانیم؟",
-        "acceptedAnswer": {
-        "@@type": "Answer",
-        "text": "برای رسیدن به رتبه های بالای نتایج جستجو باید خدمات سئو بر روی وب سایت شما انجام شود. خدمات سئو تکنیکال به صورت <b>رایگان</b> بر روی وب سایت های زاوش انجام می شود."
-        }
-        }]
-        }
-    </script>
+	<script type="application/ld+json">
+		{
+		"@@context": "http://schema.org",
+		"@@type": "Organization",
+		"name": "Zavosh",
+		"alternateName": "Zavosh",
+		"url": "https://zavoshsoftware.com",
+		"logo": "https://zavoshsoftware.com/Images/backgrounds/logozavosh.png",
+		"contactPoint": [{
+		"@@type": "ContactPoint",
+		"telephone": "+982126910970",
+		"contactType": "customer service",
+		"areaServed": "IR",
+		"availableLanguage": "Persian"
+		},{
+		"@@type": "ContactPoint",
+		"telephone": "+982126910970",
+		"contactType": "technical support",
+		"areaServed": "IR",
+		"availableLanguage": "Persian"
+		},{
+		"@@type": "ContactPoint",
+		"telephone": "+982126910970",
+		"contactType": "sales",
+		"areaServed": "IR",
+		"availableLanguage": "Persian"
+		}],
+		"sameAs": [
+		"https://www.instagram.com/zavosh.software/",
+		"https://www.facebook.com/Zavosh-654995381263130"
+		]
+		}
+	</script>
+	<script type="application/ld+json">
+		{
+		"@@context": "https://schema.org",
+		"@@type": "FAQPage",
+		"mainEntity": [{
+		"@@type": "Question",
+		"name": "مزیت طراحی سایت و اپلیکیشن توسط زاوش چیست؟",
+		"acceptedAnswer": {
+		"@@type": "Answer",
+		"text": "شرکت زاوش با بهره گیری از برنامه نویسان خبره و باتجربه پروژه های وب سایت و اپلیکیشن موبایل مشتریان را در سریعترین زمان ممکن و با کمترین خطا به آن ها تحویل می دهد. تجارب کاری با برندهای بزرگ، نتیجه خروجی با کیفیت ما می باشد.
+		<a href='https://zavoshsoftware.com/page/%D8%B7%D8%B1%D8%A7%D8%AD%DB%8C-%D8%A7%D9%BE%D9%84%DB%8C%DA%A9%DB%8C%D8%B4%D9%86-%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84'>مشاهده امکانات اپلیکیشن موبایل</a>"
+		}
+		},{
+		"@@type": "Question",
+		"name": "برای شروع کار وب سایت بهتر است یا اپلیکیشن؟",
+		"acceptedAnswer": {
+		"@@type": "Answer",
+		"text": "پاسخ این سوال بسته به نوع کسب و کار و نوع امکانات مورد نیاز شما متفاوت است. فقط به این موضوع توجه کنید که مجاب کردن کاربران برای نصب اپلیکیشن بسیار سخت است اما اگر بر روی وب سایت خود کارهای سئو را انجام دهید، کاربران از طریق گوگل شما را پیدا می کنند.
+		<a href='https://zavoshsoftware.com/page/%D8%B3%D8%A6%D9%88'>مشاهده خدمات سئو</a>"
+		}
+		},{
+		"@@type": "Question",
+		"name": "قیمت طراحی سایت و اپلیکیشن چقدر است؟",
+		"acceptedAnswer": {
+		"@@type": "Answer",
+		"text": "هزینه طراحی سایت و اپلیکیشن بستگی به امکانات سایت و اپلیکیشن شما دارد. جهت مشاوره و دریافت پیشنهاد قیمت با شماره تلفن 02126910970 تماس بگیرید.
+		<a href='https://zavoshsoftware.com/page/%D8%B7%D8%B1%D8%A7%D8%AD%DB%8C-%D9%88%D8%A8-%D8%B3%D8%A7%DB%8C%D8%AA'>ویژگی وب سایت های زاوش</a>"
+		}
+		}
+		,{
+		"@@type": "Question",
+		"name": "چگونه وب سایت ما به رتبه 1 گوگل برسانیم؟",
+		"acceptedAnswer": {
+		"@@type": "Answer",
+		"text": "برای رسیدن به رتبه های بالای نتایج جستجو باید خدمات سئو بر روی وب سایت شما انجام شود. خدمات سئو تکنیکال به صورت
+		<b>رایگان</b> بر روی وب سایت های زاوش انجام می شود."
+		}
+		}]
+		}
+	</script>
 }
 <section class="full-section full-screen parallax" style="background-image:url(/images/backgrounds/slider-1.jpg);">
-    <div class="full-section-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 top-text">
-                    <h1>طراحی سایت و اپلیکیشن موبایل</h1>
-	                <p>شرکت زاوش مجموعه ای از برنامه نویسان متخصص و با تجربه به همراه تیم دیجیتال مارکتینگ مسلط به جدیدترین اصول سئو، به کسب و کار شما کمک می کند تا علاوه بر داشتن وب سایت و اپلیکیشن موبایل یکپارچه، کسب و کار خود را به درستی در موتورهای جستجو معرفی کرده و از نهایت ظرفیت این بستر استفاده نمایید</p>
-                    <p class="text-center"><a class="btn btn-default" href="/page/طراحی-وب-سایت"><i class="fa fa-arrow-left"></i>طراحی وب سایت </a>
-                    <a class="btn btn-default" href="/page/طراحی-اپلیکیشن-موبایل"><i class="fa fa-arrow-left"></i>طراحی اپلیکیشن موبایل </a></p>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="full-section-content">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 top-text">
+					<h1>طراحی سایت و اپلیکیشن موبایل</h1>
+					<p>شرکت زاوش مجموعه ای از برنامه نویسان متخصص و با تجربه به همراه تیم دیجیتال مارکتینگ مسلط به جدیدترین اصول سئو، به کسب و کار شما کمک می کند تا علاوه بر داشتن وب سایت و اپلیکیشن موبایل یکپارچه، کسب و کار خود را به درستی در موتورهای جستجو معرفی کرده و از نهایت ظرفیت این بستر استفاده نمایید</p>
+					<p class="text-center">
+						<a class="btn btn-default" href="/page/طراحی-وب-سایت"><i class="fa fa-arrow-left"></i>طراحی وب سایت </a>
+						<a class="btn btn-default" href="/page/طراحی-اپلیکیشن-موبایل"><i class="fa fa-arrow-left"></i>طراحی اپلیکیشن موبایل </a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="headline style-3"><span class="span-heading">خدمات زاوش</span><p>خدمات شرکت زاوش در حوزه فناوری اطلاعات در چهار حوزه زیر طبقه بندی می شود</p></div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="headline style-3"><span class="span-heading">خدمات زاوش</span><p>خدمات شرکت زاوش در حوزه فناوری اطلاعات در چهار حوزه زیر طبقه بندی می شود</p></div>
+		</div>
+	</div>
 </div>
 
 <div class="container">
-    <div class="row">
-        @foreach (var page in Model.ServicePages)
+	<div class="row">
+		@foreach (var page in Model.ServicePages)
             {
-            <div class="col-sm-3">
-                <div class="services-boxes style-2 wow fadeInDown">
-                    <div class="services-boxes-content">
-                        <h2><a href="/page/@page.UrlParameter">@page.Title</a></h2>
-                        <p>@page.Summery</p>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
+				<div class="col-sm-3">
+					<div class="services-boxes style-2 wow fadeInDown">
+						<div class="services-boxes-content">
+							<h2><a href="/page/@page.UrlParameter">@page.Title</a></h2>
+							<p>@page.Summery</p>
+						</div>
+					</div>
+				</div>
+		}
+	</div>
 </div>
-
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <p class="text-center wow pulse"><a class="btn btn-default" href="/contact">به مشتریان ما بپیوندید</a></p>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-sm-12">
+			<p class="text-center wow pulse"><a class="btn btn-default" href="/contact">به مشتریان ما بپیوندید</a></p>
+		</div>
+	</div>
 </div>
-
 <section class="full-section parallax" id="section-9">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="counter">
-                    <i class="miu-icon-other_conversation_review_comment_bubble_talk_outline_stroke"></i>
-                    <div class="counter-value" data-value="142"></div>
-                    <div class="counter-details"><p>مشتری راضی</p></div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="counter">
-                    <i class="miu-icon-editor_alarm_clock_outline_stroke"></i>
-                    <div class="counter-value" data-value="12"></div>
-                    <div class="counter-details"><p>ساعت کار در روز</p></div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="counter">
-                    <i class="miu-icon-editor_setting_gear_outline_stroke"></i>
-                    <div class="counter-value" data-value="216"></div>
-                    <div class="counter-details"><p>پروژه موفق</p></div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="counter">
-                    <i class="miu-icon-editor_documents_files_outline_stroke"></i>
-                    <div class="counter-value" data-value="12"></div>
-                    <div class="counter-details"><p>کارمند</p></div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="counter">
+					<i class="miu-icon-other_conversation_review_comment_bubble_talk_outline_stroke"></i>
+					<div class="counter-value" data-value="142"></div>
+					<div class="counter-details"><p>مشتری راضی</p></div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="counter">
+					<i class="miu-icon-editor_alarm_clock_outline_stroke"></i>
+					<div class="counter-value" data-value="12"></div>
+					<div class="counter-details"><p>ساعت کار در روز</p></div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="counter">
+					<i class="miu-icon-editor_setting_gear_outline_stroke"></i>
+					<div class="counter-value" data-value="216"></div>
+					<div class="counter-details"><p>پروژه موفق</p></div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="counter">
+					<i class="miu-icon-editor_documents_files_outline_stroke"></i>
+					<div class="counter-value" data-value="12"></div>
+					<div class="counter-details"><p>کارمند</p></div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 <div class="container">
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="headline style-1 text-right"><span class="span-title">در حال پیشرفت</span></div>
-            <div class="progress"><div class="progress-bar" data-width="90"></div></div>
-            <div class="progress-bar-title"><h5>توسعه نرم افزار<span style="right:80%">90%</span></h5></div>
-            <div class="progress"><div class="progress-bar" data-width="95"></div></div>
-            <div class="progress-bar-title"><h5>طراحی وب سایت <span style="right:80%">95%</span></h5></div>
-            <div class="progress"><div class="progress-bar" data-width="85"></div></div>
-            <div class="progress-bar-title"><h5>توسعه اپلیکیشن موبایل <span style="right:80%">85%</span></h5></div>
-        </div>
-        <div class="col-sm-4">
-            <div class="headline style-1 text-right"><span class="span-title">خدمات ما</span></div>
-            <p class="text-right">شرکت زاوش توانمندی توسعه نرم‌افزارهای های قدرتمند و اختصاصی سازمان‌ها را دارا می‌باشد. با توجه به آن‌كه راهكارهای ارائه‌شده مطابق با نيازهای خاص سازمان‌ها توسعه مي‌يابد، نیازمندی‌ها را بسيار بهتر از نرم‌افزارهای آماده موجود در بازار پاسخ مي‌دهد. متخصصان خبره شركت زاوش با ماهيت کسب و کارها آشنا هستند و راه‌حل تحویلی آن‌ها منطبق بر نیازمندی‌های خاص سازمان‌ها می‌باشد.</p>
-        </div>
-        <div class="col-sm-4 ">
-            <div class="headline style-1 text-right"><span class="span-title">ویژگی های وب سایت های زاوش</span></div>
-            <ul class="home-check-list">
-                <li>طراحی اختصاصی برای هر پروژه</li>
-                <li>وب سایت های رسپانسیو</li>
-                <li>استفاده از جدیدترین زبان های برنامه نویسی</li>
-                <li>بهینه سازی داخلی وب سایت برای موتورهای جست و جو</li>
-                <li>سرعت بالای وب سایت</li>
-                <li>رعایت استانداردهای کنسرسیوم شبکه جهانی وب</li>
-            </ul>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="headline style-1 text-right"><span class="span-title">در حال پیشرفت</span></div>
+			<div class="progress"><div class="progress-bar" data-width="90"></div></div>
+			<div class="progress-bar-title"><h5>توسعه نرم افزار<span style="right:80%">90%</span></h5></div>
+			<div class="progress"><div class="progress-bar" data-width="95"></div></div>
+			<div class="progress-bar-title"><h5>طراحی وب سایت <span style="right:80%">95%</span></h5></div>
+			<div class="progress"><div class="progress-bar" data-width="85"></div></div>
+			<div class="progress-bar-title"><h5>توسعه اپلیکیشن موبایل <span style="right:80%">85%</span></h5></div>
+		</div>
+		<div class="col-sm-4">
+			<div class="headline style-1 text-right"><span class="span-title">خدمات ما</span></div>
+			<p class="text-right">شرکت زاوش توانمندی توسعه نرم‌افزارهای های قدرتمند و اختصاصی سازمان‌ها را دارا می‌باشد. با توجه به آن‌كه راهكارهای ارائه‌شده مطابق با نيازهای خاص سازمان‌ها توسعه مي‌يابد، نیازمندی‌ها را بسيار بهتر از نرم‌افزارهای آماده موجود در بازار پاسخ مي‌دهد. متخصصان خبره شركت زاوش با ماهيت کسب و کارها آشنا هستند و راه‌حل تحویلی آن‌ها منطبق بر نیازمندی‌های خاص سازمان‌ها می‌باشد.</p>
+		</div>
+		<div class="col-sm-4 ">
+			<div class="headline style-1 text-right"><span class="span-title">ویژگی های وب سایت های زاوش</span></div>
+			<ul class="home-check-list">
+				<li>طراحی اختصاصی برای هر پروژه</li><li>وب سایت های رسپانسیو</li><li>استفاده از جدیدترین زبان های برنامه نویسی</li><li>بهینه سازی داخلی وب سایت برای موتورهای جست و جو</li><li>سرعت بالای وب سایت</li><li>رعایت استانداردهای کنسرسیوم شبکه جهانی وب</li>
+			</ul>
+		</div>
+	</div>
 </div>
 <br><br><br>
 <div class="container">
-    <div class="row">
-        @foreach (var page in Model.DetailServicePages)
-        {
-            <div class="col-sm-3">
-                <div class="services-boxes style-1">
-                    <div class="services-boxes-content"><h2><a href="/page/@page.UrlParameter">@page.Title</a> </h2><p>@page.Summery</p><a href="/page/@page.UrlParameter"><i class="fa fa-arrow-left"></i>مطالعه بیشتر</a></div>
-                </div>
-            </div>
-        }
-    </div>
+	<div class="row">
+		@foreach (var page in Model.DetailServicePages)
+		{
+				<div class="col-sm-3">
+					<div class="services-boxes style-1">
+						<div class="services-boxes-content"><h2><a href="/page/@page.UrlParameter">@page.Title</a> </h2><p>@page.Summery</p><a href="/page/@page.UrlParameter"><i class="fa fa-arrow-left"></i>مطالعه بیشتر</a></div>
+					</div>
+				</div>
+		}
+	</div>
+</div>
+
+<section class="full-section parallax" id="section-9-new">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 home-form">
+				<p>جهت ثبت سفارش و استعلام قیمت فرم ثبت سفارش را تکمیل نمایید</p>
+				<a class="btn btn-default" href="/contact">تکمیل فرم استعلام قیمت</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="headline style-3 ">
+				<span class="span-title">نمونه کارهای زاوش</span>
+				<p>در این بخش تعدادی از نمونه کارهای طراحی سایت یا اپلیکیشن زاوش را مشاهده می کنید</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="isotope col-3 clearfix">
+				@foreach (var page in Model.PortfolioList)
+				{
+						<div class="isotope-item">
+							<div class="blog-article wow fadeIn" data-wow-delay="0.3s">
+								<div class="blog-article-thumbnail">
+									<a href="/portfoliodetail/@page.UrlParameter">
+										<img src="@page.ImageUrl" alt="@page.Title" height="500px" width="800px">
+									</a>
+								</div>
+								<div class="blog-article-details">
+									<h2><a href="/portfoliodetail/@page.UrlParameter">@page.Title</a></h2>
+								</div>
+							</div>
+						</div>
+				}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12"><p class="text-center"><a class="btn btn-white" href="/portfolio">مشاهده همه نمونه کارها</a></p></div>
+	</div>
 </div>
 
 <section class="full-section parallax" id="section-1">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="headline style-2">
-                    <i class="miu-icon-other_conversation_review_comment_bubble_talk_outline_stroke"></i>
-                    <h2>درباره زاوش</h2>
-                </div>
-                <div class="testimonial-slider">
-                    <ul>
-                        <li><div class="testimonial"><p>شرکت مشاوران سیستم های پیشرفته زاوش با هدف کمک به ارتقا توانمندی ها و بهرهوری سازمان ها و با ارائه خدمات تخصصی مشاوره و اجرایی در حوزه های مدیریت و فناوری اطلاعات در سال 1390 تاسیس شده است. تا کنون در حوزه فناوری اطلاعات بیش از 100 پروژه موفق در حوزه های طراحی سایت، طراحی نرم افزار اختصاصی، طراحی اپلیکیشن موبایل و سئو با انجام رسانده ایم.</p></div></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="headline style-2">
+					<i class="miu-icon-other_conversation_review_comment_bubble_talk_outline_stroke"></i>
+					<h2>درباره زاوش</h2>
+				</div>
+				<div class="testimonial-slider">
+					<ul>
+						<li><div class="testimonial"><p>شرکت مشاوران سیستم های پیشرفته زاوش با هدف کمک به ارتقا توانمندی ها و بهرهوری سازمان ها و با ارائه خدمات تخصصی مشاوره و اجرایی در حوزه های مدیریت و فناوری اطلاعات در سال 1390 تاسیس شده است. تا کنون در حوزه فناوری اطلاعات بیش از 100 پروژه موفق در حوزه های طراحی سایت، طراحی نرم افزار اختصاصی، طراحی اپلیکیشن موبایل و سئو با انجام رسانده ایم.</p></div></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="headline style-3 ">
-                <span class="span-title">وبلاگ</span>
-                <p>در این بخش جدیدترین مقالات مربوط به حوزه های کاری زاوش را دنبال نمایید</p>
-            </div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="headline style-3 ">
+				<span class="span-title">وبلاگ</span>
+				<p>در این بخش جدیدترین مقالات مربوط به حوزه های کاری زاوش را دنبال نمایید</p>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="isotope col-3 clearfix">
-                @foreach (var page in Model.BlogList)
-                {
-                    <div class="isotope-item">
-                        <div class="blog-article wow fadeIn" data-wow-delay="0.3s">
-                            <div class="blog-article-thumbnail">
-                                <img src="@page.ImageUrl" alt="@page.Title" height="500px" width="800px">
-                                <div class="blog-article-hover"><a href="/page/@page.UrlParameter"><i class="fa fa-eye"></i></a></div>
-                            </div>
-                            <div class="blog-article-details">
-                                <span class="creation-date">@page.CreationDate.ToShortDateString()</span>
-                                <h2><a href="/page/@page.UrlParameter">@page.Title</a></h2>
-                            </div>
-                            <p>@page.Summery</p><a class="btn btn-default" href="/page/@page.UrlParameter">ادامه مطلب</a>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="isotope col-3 clearfix">
+				@foreach (var page in Model.BlogList)
+				{
+						<div class="isotope-item">
+							<div class="blog-article wow fadeIn" data-wow-delay="0.3s">
+								<div class="blog-article-thumbnail">
+									<img src="@page.ImageUrl" alt="@page.Title" height="500px" width="800px">
+									<div class="blog-article-hover"><a href="/page/@page.UrlParameter"><i class="fa fa-eye"></i></a></div>
+								</div>
+								<div class="blog-article-details">
+									<span class="creation-date">@page.CreationDate.ToShortDateString()</span>
+									<h2><a href="/page/@page.UrlParameter">@page.Title</a></h2>
+								</div>
+								<p>@page.Summery</p><a class="btn btn-default" href="/page/@page.UrlParameter">ادامه مطلب</a>
+							</div>
+						</div>
+				}
+			</div>
+		</div>
+	</div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12"><p class="text-center"><a class="btn btn-white load-more" href="/blog">مطالعه بیشتر</a></p></div>
- </div>
+	<div class="row">
+		<div class="col-sm-12"><p class="text-center"><a class="btn btn-white" href="/blog">مطالعه بیشتر</a></p></div>
+	</div>
 </div>
 <br /><br />

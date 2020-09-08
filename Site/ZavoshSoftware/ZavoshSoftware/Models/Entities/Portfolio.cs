@@ -73,5 +73,7 @@ namespace Models
 
             }
         }
+
+        public bool IsInHome { get; set; }
     }
 }
