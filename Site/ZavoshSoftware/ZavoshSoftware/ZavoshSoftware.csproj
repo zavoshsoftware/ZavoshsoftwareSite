@@ -204,6 +204,7 @@
     <Content Include="Assets\css\bootstrap-rtl.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\custom.css" />
+    <Content Include="Assets\css\font-awesome.css" />
     <Content Include="Assets\css\pages-style-rtl.css" />
     <Content Include="Assets\css\pages-style.css" />
     <Content Include="Assets\css\Style.css" />
@@ -665,6 +666,7 @@
     <Content Include="Images\backgrounds\bg-megamenu.jpg" />
     <Content Include="Images\backgrounds\slider-1.jpg" />
     <Content Include="Images\backgrounds\zavoshlogo.png" />
+    <Content Include="Images\bg-pattern.jpg" />
     <Content Include="Images\icons\favicon.png" />
     <Content Include="Images\backgrounds\image-megamenu.jpg" />
     <Content Include="Images\backgrounds\logo.png" />

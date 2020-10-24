@@ -275,7 +275,7 @@ namespace ZavoshSoftware.Controllers
             ViewBag.id = portfolio.Id;
             ViewBag.Title = portfolio.Title + " - زاوش";
             ViewBag.Description = portfolio.MetaDescription;
-            ViewBag.Canonical = "https://zavoshsoftware.com/Portfoliodetail/" + pageParam;
+            ViewBag.Canonical = "https://zavoshsoftware.com/portfoliodetail/" + pageParam;
             ViewBag.rate = ReturnRate(portfolio);
 
             ViewBag.RatingCount = ReturnRatingCount(portfolio.Id);
