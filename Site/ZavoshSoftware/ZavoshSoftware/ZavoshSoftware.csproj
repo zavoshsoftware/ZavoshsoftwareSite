@@ -208,7 +208,10 @@
     <Content Include="Assets\css\pages-style-rtl.css" />
     <Content Include="Assets\css\pages-style.css" />
     <Content Include="Assets\css\Style.css" />
+    <Content Include="Assets\css\style-home.css" />
+    <Content Include="Assets\css\style-service.min.css" />
     <Content Include="Assets\css\style.min.css" />
+    <Content Include="Assets\fontawesome\css\font-awesome-home.min.css" />
     <Content Include="Assets\fontawesome\css\font-awesome.min.css" />
     <Content Include="Assets\fontawesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
@@ -895,6 +898,8 @@
     <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
     <Content Include="CodeTemplates\MvcView\List.cs.t4" />
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
+    <Content Include="Images\backgrounds\slider-1.webp" />
+    <Content Include="Images\backgrounds\bg-7.webp" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\kendo\2017.3.913\kendo.all-vsdoc.js" />
     <None Include="Scripts\kendo\2017.3.913\kendo.all.min.intellisense.js" />

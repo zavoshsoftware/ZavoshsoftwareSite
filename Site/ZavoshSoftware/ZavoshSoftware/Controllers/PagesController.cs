@@ -292,7 +292,6 @@ namespace ZavoshSoftware.Controllers
 
             PageDetailViewModel pageDetail = new PageDetailViewModel()
             {
-                FooterBlog = menu.GetFooterData(),
                 Title = page.Title,
                 Body = page.Body,
                 Date = page.LastModificationDate.Value.ToShortDateString(),
@@ -300,7 +299,6 @@ namespace ZavoshSoftware.Controllers
                 CommentCount = db.Comments.Count(current =>
                     current.PageId == page.Id && current.IsActive == true && current.IsDelete == false),
                 SidebarPages = GetSidebarPages(page.Id, page.PageGroupId),
-                MenuServicePages = menu.GetMenuData(),
                 Comments = ReturnComments(page.Id),
                 UrlParameter = page.UrlParameter,
                 Rate = ReturnRate(page),
@@ -456,9 +454,7 @@ namespace ZavoshSoftware.Controllers
             BlogListViewModel portfolio = new BlogListViewModel()
             {
                 Portfolio = Pages,
-                MenuServicePages = menu.GetMenuData(),
                 PageGroupBody = body,
-                FooterBlog = menu.GetFooterData(),
                 PageGroupTitle = title
             };
             ViewBag.Title = title;
@@ -636,9 +632,7 @@ namespace ZavoshSoftware.Controllers
             BlogListViewModel portfolio = new BlogListViewModel()
             {
                 Portfolio = pages,
-                MenuServicePages = menu.GetMenuData(),
                 PageGroupBody = body,
-                FooterBlog = menu.GetFooterData(),
                 PageGroupTitle = title
             };
             ViewBag.Title = title;

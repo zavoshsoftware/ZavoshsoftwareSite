@@ -232,9 +232,7 @@ namespace ZavoshSoftware.Controllers
             PortfolioListViewModel portfolio = new PortfolioListViewModel()
             {
                 Portfolio = portfolios,
-                MenuServicePages = menu.GetMenuData(),
                 PageGroupBody = body,
-                FooterBlog = menu.GetFooterData(),
                 PageGroupTitle = title
             };
             ViewBag.Title = title;
@@ -257,14 +255,12 @@ namespace ZavoshSoftware.Controllers
             }
             PortfolioDetailViewModel pageDetail = new PortfolioDetailViewModel()
             {
-                FooterBlog = menu.GetFooterData(),
                 Title = portfolio.Title,
                 Body = portfolio.Body,
                 Date = portfolio.LastModificationDate.Value.ToShortDateString(),
                 ImageUrl = portfolio.ImageUrl,
                 CommentCount = db.Comments.Count(current => current.PageId == portfolio.Id && current.IsActive == true && current.IsDelete == false),
                 SidebarPages = GetSidebarPages(portfolio.Id, portfolio.PortfolioGroupId),
-                MenuServicePages = menu.GetMenuData(),
                 UrlParameter = portfolio.UrlParameter,
                 PortfolioGroupUrlParameter = portfolio.PortfolioGroup.UrlParameter,
                 PortfolioGroupTitle = portfolio.PortfolioGroup.Title,

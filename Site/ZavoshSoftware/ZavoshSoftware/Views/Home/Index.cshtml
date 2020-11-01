@@ -8,6 +8,11 @@
 		ViewBag.ogImage = "https://zavoshsoftware.com/Images/backgrounds/logozavosh.png";
 		ViewBag.ogSitename = "شرکت زاوش";
 }
+@section footerStyle
+{
+	<link href="~/Assets/css/style-home.css" rel="stylesheet" />
+<link href="~/Assets/fontawesome/css/font-awesome-home.min.css" rel="stylesheet" />
+}
 @section StructuredData
 {
 	<script type="application/ld+json">
@@ -84,7 +89,7 @@
 		}
 	</script>
 }
-<section class="full-section full-screen parallax" style="background-image:url(/images/backgrounds/slider-1.jpg);">
+<section class="full-section full-screen parallax" style="background-image:url(/images/backgrounds/slider-1.webp);">
 	<div class="full-section-content">
 		<div class="container">
 			<div class="row">
@@ -290,8 +295,9 @@
 						<div class="isotope-item">
 							<div class="blog-article wow fadeIn" data-wow-delay="0.3s">
 								<div class="blog-article-thumbnail">
-									<img src="@page.ImageUrl" alt="@page.Title" height="500px" width="800px">
-									<div class="blog-article-hover"><a href="/page/@page.UrlParameter"><i class="fa fa-eye"></i></a></div>
+									<a href="/page/@page.UrlParameter">
+										<img src="@page.ImageUrl" alt="@page.Title" height="500px" width="800px">
+									</a>
 								</div>
 								<div class="blog-article-details">
 									<span class="creation-date">@page.CreationDate.ToShortDateString()</span>

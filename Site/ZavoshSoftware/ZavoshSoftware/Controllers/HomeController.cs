@@ -16,23 +16,22 @@ namespace ZavoshSoftware.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            //List<string> list=new List<string>();
-            //Helper.Message message=new Message();
-            //message.SendEmail(list, "hi");
             MenuData menu = new MenuData();
+
             HomeViewModel home = new HomeViewModel()
             {
-                MenuServicePages = menu.GetMenuData(),
-                FooterBlog = menu.GetFooterData(),
                 ServicePages = GetPages(new Guid("EDEB818D-E965-4DEF-B855-17E04F40F1A6")),
+
                 DetailServicePages = GetPages(new Guid("28B4C30B-F5E4-4C82-A67E-9109E9F28CD1")),
+
                 BlogList = GetPagesByGroup(new Guid("ECD18815-6452-4A49-805D-A99533EFEE6E"))
                     .OrderByDescending(current => current.CreationDate).Take(3).ToList(),
+
                 PortfolioList =
                     db.Portfolios.Where(current => current.IsInHome && current.IsActive && current.IsDelete == false)
                         .Take(3).ToList()
             };
-            ViewBag.Canonical = "https://zavoshsoftware.com";
+            ViewBag.Canonical = "https://zavoshsoftware.com/";
 
             return View(home);
         }
@@ -40,18 +39,18 @@ namespace ZavoshSoftware.Controllers
         public List<Page> GetPages(Guid positionId)
         {
             List<Page> servicePages = new List<Page>();
+
             List<PagePosition> pagePositions =
                 db.PagePositions.Where(current => current.PositionId == positionId)
                     .OrderBy(current => current.Page.Order).ToList();
 
             foreach (PagePosition pagePosition in pagePositions)
             {
-                Page page = db.Pages.FirstOrDefault(current => current.IsDelete == false && current.IsActive == true &&
-                                                               current.Id == pagePosition.PageId);
+                Page page = db.Pages.FirstOrDefault(current => current.Id == pagePosition.PageId &&
+                current.IsDelete == false && current.IsActive);
 
                 if (page != null)
                     servicePages.Add(page);
-
             }
 
             return servicePages;
@@ -75,9 +74,6 @@ namespace ZavoshSoftware.Controllers
             MenuData menu = new MenuData();
             ContactViewModel contact = new ContactViewModel()
             {
-                MenuServicePages = menu.GetMenuData(),
-                FooterBlog = menu.GetFooterData(),
-
             };
             return View(contact);
         }
@@ -94,6 +90,6 @@ namespace ZavoshSoftware.Controllers
             return Redirect("/");
         }
 
- 
+
     }
 }

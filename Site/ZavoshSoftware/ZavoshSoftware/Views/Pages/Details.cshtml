@@ -6,12 +6,11 @@
     ViewBag.ogSitename = "شرکت زاوش";
     ViewBag.Title = Model.TitleTag;
 }
-
+@section footerStyle{<link href="~/Assets/css/style-service.min.css" rel="stylesheet" />
+	<link href="~/Assets/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
+}
 @section StructuredData
 {
-    <link href="/Content/star-rating.min.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="~/Scripts/UI/star-rating.js"></script>
 	<script type="application/ld+json">
         {
 
@@ -40,53 +39,9 @@
         "url":"https://zavoshsoftware.com/Images/backgrounds/zavoshlogo.png"
         }
         }
-		@*,
-        "description":"@ViewBag.Description",
-        "aggregateRating":
-        {
-        "@@type":"AggregateRating",
-        "ratingValue":"@ViewBag.rate",
-        "bestRating":"5",
-        "ratingCount":"@ViewBag.RatingCount"
-        }*@
         }
     </script>
-    @*<script type="application/ld+json">
-        {
-
-        "@@context": "http://schema.org",
-        "@@type": "BreadcrumbList",
-        "itemListElement":
-        [{
-        "@@type":"ListItem",
-        "position":1,
-        "item":{
-        "@@id":"https://zavoshsoftware.com",
-        "name":"زاوش",
-        "image":"https://zavoshsoftware.com/Images/backgrounds/logozavosh.png"
-        }
-        },
-        {
-        "@@type":"ListItem",
-        "position":2,
-        "item":{
-        "@@id":"@ViewBag.ListUrl",
-        "name":"@ViewBag.ListTitle",
-        "image":"https://zavoshsoftware.com/Images/backgrounds/logozavosh.png"
-        }
-        },
-        {
-        "@@type":"ListItem",
-        "position": 3,
-        "item":{
-        "@@id":"@ViewBag.Canonical",
-        "name":"@ViewBag.Title",
-        "image":"@ViewBag.image"
-        }
-        }
-        ]
-        }
-    </script>*@
+  
     @if (Model.Faqs.Count() == 3)
     {
         <script type="application/ld+json">
@@ -256,125 +211,4 @@
 </div>
 @section scripts{
     <script src="~/Scripts/UI/custom.js"></script>
-}
-@section ratingScripts{
-    <script>
-        jQuery(document).ready(function() {
-            $("#input-21f").rating({
-                starCaptions: function(val) {
-                    if (val < 3) {
-                        return val;
-                    } else {
-                        return 'high';
-                    }
-                },
-                starCaptionClasses: function(val) {
-                    if (val < 3) {
-                        return 'label label-danger';
-                    } else {
-                        return 'label label-success';
-                    }
-                },
-                hoverOnClear: false
-            });
-            var $inp = $('#rating-input');
-
-            $inp.rating({
-                min: 0,
-                max: 5,
-                step: 1,
-                size: 'lg',
-                showClear: false
-            });
-
-            $('#btn-rating-input').on('click',
-                function() {
-                    $inp.rating('refresh',
-                        {
-                            showClear: true,
-                            disabled: !$inp.attr('disabled')
-                        });
-                });
-
-
-            $('.btn-danger').on('click',
-                function() {
-                    $("#kartik").rating('destroy');
-                });
-
-            $('.btn-success').on('click',
-                function() {
-                    $("#kartik").rating('create');
-                });
-
-            $inp.on('rating.change',
-                function() {
-                    alert($('#rating-input').val());
-                });
-
-
-            $('.rb-rating').rating({
-                'showCaption': true,
-                'stars': '3',
-                'min': '0',
-                'max': '3',
-                'step': '1',
-                'size': 'xs',
-                'starCaptions': { 0: 'status:nix', 1: 'status:wackelt', 2: 'status:geht', 3: 'status:laeuft' }
-            });
-            $("#input-21c").rating({
-                min: 0,
-                max: 8,
-                step: 0.5,
-                size: "xl",
-                stars: "8"
-            });
-            //$("#submitRating").click(function () {
-
-
-        });
-
-        function SubmitRate() {
-            var spanStarNumber;
-            var starNumber;
-            var pageId = '@ViewBag.id';
-            var badgeprimary = $(".badge-primary")[0];
-            var badgeInfo = $(".badge-info")[0];
-            var badgesecondary = $(".badge-secondary")[0];
-            var badgewarning = $(".badge-warning")[0];
-            if (badgeprimary !== undefined) {
-                spanStarNumber = $(".badge-primary")[0].childNodes[0].data;
-                starNumber = spanStarNumber;
-
-            } else if (badgeInfo !== undefined) {
-                spanStarNumber = $(".badge-info")[0].childNodes[0].data;
-                starNumber = spanStarNumber;
-            } else if (badgesecondary !== undefined) {
-                spanStarNumber = $(".badge-secondary")[0].childNodes[0].data;
-                var starNumberSplit = spanStarNumber.split(' ');
-                starNumber = starNumberSplit[0];
-
-            } else if (badgewarning !== undefined) {
-                spanStarNumber = $(".badge-warning")[0].childNodes[0].data;
-                starNumber = spanStarNumber;
-            } else {
-                spanStarNumber = $(".badge-success")[0].childNodes[0].data;
-                starNumber = spanStarNumber;
-
-            }
-            $.ajax(
-                {
-                    url: "/Pages/teststar",
-                    data: { rateStar: starNumber, id: pageId},
-                    type: "GET"
-                }).done(function(result) {
-                if (result === "true") {
-                    alert('امتیاز شما با موفقیت ثبت شد.');
-                } else if (result === "false") {
-                    alert('خطایی رخ داد!! مجددا تلاش نمایید');
-
-                }
-            });
-        }
-    </script>
 }
