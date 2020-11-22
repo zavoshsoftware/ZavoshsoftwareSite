@@ -410,7 +410,8 @@ namespace ZavoshSoftware.Controllers
                     sidebarPages.Add(new PageListViewModel()
                     {
                         Title = page.Title,
-                        UrlParameter = page.UrlParameter
+                        UrlParameter = page.UrlParameter,
+                        ImageUrl = page.ImageUrl
                     });
                 }
             }

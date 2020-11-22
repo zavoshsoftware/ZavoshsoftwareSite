@@ -9,5 +9,6 @@ namespace ViewModels
     {
         public string Title { get; set; }
         public string UrlParameter { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

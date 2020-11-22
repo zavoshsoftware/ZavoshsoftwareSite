@@ -85,129 +85,153 @@
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="blog-article">
-                <div class="blog-article-thumbnail"><img src="@Model.ImageUrl" alt="@Model.Title" /></div>
-                <div class="blog-article-details">
-                    <span>@Model.Date</span>
-                    <h1>@Model.Title</h1>
-                    <p>
-                        <i class="miu-icon-other_conversation_review_comment_bubble_talk_outline_stroke"></i>
-                        <a href="#Comment">@Model.CommentCount</a>
-                    </p>
-                </div>
-                @Html.Raw(Model.Body)
+	<div class="row">
+		<div class="col-sm-2"></div>
+		
+		<div class="col-sm-8">
+			<div class="blog-article">
+				<div class="blog-article-thumbnail"><img src="@Model.ImageUrl" alt="@Model.Title"/>
+				</div>
+				<div class="blog-article-details">
+					<span>@Model.Date</span>
+					<h1>@Model.Title</h1>
+					<p>
+						<i class="miu-icon-other_conversation_review_comment_bubble_talk_outline_stroke"></i>
+						<a href="#Comment">@Model.CommentCount</a>
+					</p>
+				</div>
+				@Html.Raw(Model.Body)
 
-                @if (Model.HasFaq)
-                {
-                    <h2 class="faq-section">@Model.FaqTitle</h2>
-                    <p>در این قسمت سوالات متداولی که در رابطه با این مطلب وجود دارد را مشاهده می فرمایید.</p>
-                    foreach (var faq in Model.Faqs)
-                    {
-                        <h3>@faq.Question</h3>
-                        <p>@faq.Answer</p>
-                    }
-                }
-                <div class="blog-article-author">
-                    <div class="blog-article-author-details">
-                        <h4>ثبت نظر</h4>
-                        <p>اگر سوال یا نظری در مورد مطلب بالا دارید در این قسمت مطرح نمایید. کارشناسان زاوش در اسرع وقت به سوال شما پاسخ داده و از طریق ایمیل به شما اطلاع رسانی خواهد شد</p>
-                    </div>
-                </div>
-                @*<section id="rating">
+				@if (Model.HasFaq)
+				{
+					<h2 class="faq-section">@Model.FaqTitle</h2>
+					<p>در این قسمت سوالات متداولی که در رابطه با این مطلب وجود دارد را مشاهده می فرمایید.</p>
+					foreach (var faq in Model.Faqs)
+					{
+						<h3>@faq.Question</h3>
+						<p>@faq.Answer</p>
+					}
+				}
+				<div class="blog-article-author">
+					<div class="blog-article-author-details">
+						<h4>ثبت نظر</h4>
+						<p>اگر سوال یا نظری در مورد مطلب بالا دارید در این قسمت مطرح نمایید. کارشناسان زاوش در اسرع وقت به سوال شما پاسخ داده و از طریق ایمیل به شما اطلاع رسانی خواهد شد</p>
+					</div>
+				</div>
+				@*<section id="rating">
                     <div class="row blog-rating">
                         <div class="col-md-5"></div>
                         @Html.Partial("FrontEndLayout/_RatingPartial")
                     </div>
                 </section>*@
-                <section id="Comment">
-                    <h3 class="commentlist-title">نظر (@Model.CommentCount)</h3>
-                    <ul class="commentlist">
-                        @foreach (var comment in Model.Comments)
-                        {
-                            <li class="comment even thread-even depth-1">
-                                <div class="comment-body">
-                                    <div class="comment-meta">
-                                        <div class="comment-author vcard">
-                                            <img class="avatar avatar-80 photo" src="/Images/avatar.jpg" alt="" height='80' width='80'>
-                                            <span class="fn" href="#">@comment.ParentCommnets.Name</span>
-                                        </div>
-                                        <div class="comment-metadata">
-                                            <span href="#">@comment.ParentCommnets.CreationDate.ToShortDateString()</span>
-                                        </div>
-                                    </div>
-                                    <div class="comment-content">
-                                        <p>
-                                            @if (comment.ParentCommnets.Body != null)
-                                            {
-                                                @Html.Raw(comment.ParentCommnets.Body.Replace(Environment.NewLine, "<br/>"))
-                                            }
-                                        </p>
-                                    </div>
-                                    <div class="reply">
-                                        <a class="comment-reply-link" href="#" onClick="LeaveComment('@comment.ParentCommnets.Id');return false;" id="reply">پاسخ</a>
-                                    </div>
-                                </div>
-                                <ul>
-                                    @foreach (var respond in comment.RespondComments)
-                                    {
-                                        <li class="comment even thread-even depth-1">
-                                            <div class="comment-body">
-                                                <div class="comment-meta">
-                                                    <div class="comment-author vcard">
-                                                        <img class="avatar avatar-80 photo" src="/Images/avatar.jpg" alt="" height='80' width='80'>
-                                                        <span class="fn" href="#">@respond.Name</span>
-                                                    </div>
-                                                    <div class="comment-metadata"><span href="#">@respond.CreationDate.ToShortDateString()</span></div>
-                                                </div>
-                                                <div class="comment-content"><p>@Html.Raw(respond.Body)</p></div>
-                                            </div>
-                                        </li>
-                                    }
-                                </ul>
-                            </li>
-                        }
-                    </ul>
-                    <div id="respond">
-                        <span class="commentform-title" id="submit-comment">ثبت نظر</span>
-                        <div class="alert alert-danger dir-rtl" id="errorDivQ"></div>
-                        <div class="alert alert-success dir-rtl" id="SuccessDivQ">پیغام شما با موفقیت ثبت گردید، پس از تایید مدیر سایت نمایش داده خواهد شد.</div>
-                        <div id="commentform">
-                            <fieldset>
-                                <p>
-                                    <label for="name">نام</label>
-                                    <input id="commentName" type="text" name="name" placeholder="نام">
-                                </p>
-                                <p>
-                                    <label for="email">ایمیل</label>
-                                    <input id="commentEmail" type="text" name="email" placeholder="ایمیل">
-                                </p>
-                                <p>
-                                    <label for="message">نظر</label>
-                                    <textarea id="commentBody" name="message" rows="8" cols="25" placeholder="نظر"></textarea>
-                                </p>
-                                <p><input id="btnSubmitComment" class="btn btn-default" onclick="SubmitComment('@ViewBag.id');" type="button" name="button" value="ثبت نظر"></p>
-                            </fieldset>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <aside>
-                <div class="widget widget-categories">
-                    <div class="widget-title">سایر خدمات</div>
-                    <ul>
-                        @foreach (var page in Model.SidebarPages)
-                        {
-                            <li><a href="/page/@page.UrlParameter">@page.Title</a></li>
-                        }
-                    </ul>
-                </div>
-            </aside>
-        </div>
-    </div>
+				<section id="Comment">
+					<h3 class="commentlist-title">نظر (@Model.CommentCount)</h3>
+					<ul class="commentlist">
+						@foreach (var comment in Model.Comments)
+						{
+							<li class="comment even thread-even depth-1">
+								<div class="comment-body">
+									<div class="comment-meta">
+										<div class="comment-author vcard">
+											<img class="avatar avatar-80 photo" src="/Images/avatar.jpg" alt="" height='80' width='80'>
+											<span class="fn" href="#">@comment.ParentCommnets.Name</span>
+										</div>
+										<div class="comment-metadata">
+											<span href="#">@comment.ParentCommnets.CreationDate.ToShortDateString()</span>
+										</div>
+									</div>
+									<div class="comment-content">
+										<p>
+											@if (comment.ParentCommnets.Body != null)
+											{
+												@Html.Raw(comment.ParentCommnets.Body.Replace(Environment.NewLine, "<br/>"))
+											}
+										</p>
+									</div>
+									<div class="reply">
+										<a class="comment-reply-link" href="#" onClick="LeaveComment('@comment.ParentCommnets.Id');return false;" id="reply">پاسخ</a>
+									</div>
+								</div>
+								<ul>
+									@foreach (var respond in comment.RespondComments)
+									{
+										<li class="comment even thread-even depth-1">
+											<div class="comment-body">
+												<div class="comment-meta">
+													<div class="comment-author vcard">
+														<img class="avatar avatar-80 photo" src="/Images/avatar.jpg" alt="" height='80' width='80'>
+														<span class="fn" href="#">@respond.Name</span>
+													</div>
+													<div class="comment-metadata"><span href="#">@respond.CreationDate.ToShortDateString()</span>
+													</div>
+												</div>
+												<div class="comment-content">
+													<p>@Html.Raw(respond.Body)</p>
+												</div>
+											</div>
+										</li>
+									}
+								</ul>
+							</li>
+						}
+					</ul>
+					<div id="respond">
+						<span class="commentform-title" id="submit-comment">ثبت نظر</span>
+						<div class="alert alert-danger dir-rtl" id="errorDivQ"></div>
+						<div class="alert alert-success dir-rtl" id="SuccessDivQ">پیغام شما با موفقیت ثبت گردید، پس از تایید مدیر سایت نمایش داده خواهد شد.</div>
+						<div id="commentform">
+							<fieldset>
+								<p>
+									<label for="name">نام</label>
+									<input id="commentName" type="text" name="name" placeholder="نام">
+								</p>
+								<p>
+									<label for="email">ایمیل</label>
+									<input id="commentEmail" type="text" name="email" placeholder="ایمیل">
+								</p>
+								<p>
+									<label for="message">نظر</label>
+									<textarea id="commentBody" name="message" rows="8" cols="25" placeholder="نظر"></textarea>
+								</p>
+								<p><input id="btnSubmitComment" class="btn btn-default" onclick="SubmitComment('@ViewBag.id');" type="button" name="button" value="ثبت نظر">
+								</p>
+							</fieldset>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		@*<div class="col-sm-4">
+					<aside>
+							<div class="widget widget-categories">
+									<div class="widget-title">سایر خدمات</div>
+									<ul>
+											@foreach (var page in Model.SidebarPages)
+											{
+													<li><a href="/page/@page.UrlParameter">@page.Title</a></li>
+											}
+									</ul>
+							</div>
+					</aside>
+			</div>*@
+	</div>
+	
+	
+	<div class="tag-box">
+		<span class="commentform-title">مطالب مشابه</span>
+		<div class="other-service-list">
+			<div class="row">
+			@foreach (var page in Model.SidebarPages)
+			{
+					<div class="col-xs-6 other-service-item">
+					<a href="/page/@page.UrlParameter">@page.Title</a>
+					</div>
+			}
+			<p class="clearfix"></p>
+			</div>
+			</div>
+	</div>
 </div>
 @section scripts{
     <script src="~/Scripts/UI/custom.js"></script>
