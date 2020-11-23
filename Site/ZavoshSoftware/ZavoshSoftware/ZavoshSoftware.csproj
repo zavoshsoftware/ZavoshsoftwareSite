@@ -782,6 +782,7 @@
     <Content Include="Images\testimonials\image-1.jpg" />
     <Content Include="Images\testimonials\image-2.jpg" />
     <Content Include="Images\testimonials\image-3.jpg" />
+    <Content Include="Images\whatsapp-icon.png" />
     <Content Include="Scripts\AdminJS\app.v2.js" />
     <Content Include="Scripts\AdminJS\app.v2.min.js" />
     <Content Include="Scripts\AdminJS\jquery-ui-1.10.3.custom.min.js" />

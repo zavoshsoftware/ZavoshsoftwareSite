@@ -294,7 +294,7 @@ namespace ZavoshSoftware.Controllers
             {
                 Title = page.Title,
                 Body = page.Body,
-                Date = page.LastModificationDate.Value.ToShortDateString(),
+                Date = GetDateStr(page.LastModificationDate),
                 ImageUrl = page.ImageUrl,
                 CommentCount = db.Comments.Count(current =>
                     current.PageId == page.Id && current.IsActive == true && current.IsDelete == false),
@@ -332,6 +332,22 @@ namespace ZavoshSoftware.Controllers
                 ViewBag.ListTitle = "مطالب وبلاگ";
             }
             return View(pageDetail);
+        }
+
+        public string GetDateStr(DateTime? date)
+        {
+            if (date != null)
+            {
+                System.Globalization.PersianCalendar pc = new System.Globalization.PersianCalendar();
+                string year = pc.GetYear(date.Value).ToString().PadLeft(4, '0');
+                string month = pc.GetMonth(date.Value).ToString().PadLeft(2, '0');
+                string day = pc.GetDayOfMonth(date.Value).ToString().PadLeft(2, '0');
+                return String.Format("{0}/{1}/{2}", year, month, day);
+            }
+            else
+            {
+                return String.Empty;
+            }
         }
 
         public string GetTitleTag(Page page)

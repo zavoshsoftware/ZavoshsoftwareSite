@@ -34,9 +34,8 @@
             {
                 <div class="col-sm-4">
                     <div class="blog-article">
-                        <div class="blog-article-thumbnail">
-                            <img src="@page.ImageUrl" alt="@page.Title">
-                            <div class="blog-article-hover"><a class="zoom-action" href="/page/@page.UrlParameter"><i class="fa fa-eye"></i></a></div>
+                    <div class="blog-article-thumbnail">
+	                    <a href="/page/@page.UrlParameter"><img src="@page.ImageUrl" alt="@page.Title"></a> 
                         </div>
                         <div class="blog-article-details">
                             <h6>@page.LastModificationDate.Value.ToShortDateString()</h6>

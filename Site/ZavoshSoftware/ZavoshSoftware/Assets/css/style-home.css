@@ -5989,3 +5989,12 @@ span.creation-date {
         .header-sticky .sf-arrows .sf-with-ul:after {margin-top:-8px;}
         .header-sticky a.search-button {display:none;}
         }
+
+.whatsapp-icon {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+.whatsapp-icon img {
+    max-height: 50px;
+}

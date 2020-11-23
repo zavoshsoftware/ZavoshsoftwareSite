@@ -1676,3 +1676,16 @@
 		}
 		
 	}
+
+    
+ 	.whatsapp-icon {
+ 	    position: fixed;
+ 	    bottom: 20px;
+ 	    left: 20px;
+ 	}
+ 	.whatsapp-icon img {
+ 	    max-height: 50px;
+ 	}
+ 	.blog-article h2 {
+ 	    color: #e7411b;
+ 	}
