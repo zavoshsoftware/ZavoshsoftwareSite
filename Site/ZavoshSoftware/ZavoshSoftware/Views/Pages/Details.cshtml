@@ -107,6 +107,21 @@
 						<p>@faq.Answer</p>
 					}
 				}
+				<div class="tag-box">
+					<aside>
+						<span class="commentform-title">مطالب مشابه</span>
+						<div class="other-service-list">
+							<div class="row">
+								@foreach (var page in Model.SidebarPages)
+								{
+									<div class="col-xs-6 other-service-item"><a href="/page/@page.UrlParameter">@page.Title</a>
+									</div>
+								}
+								<p class="clearfix"></p>
+							</div>
+						</div>
+					</aside>
+				</div>
 				<div class="blog-article-author">
 					<div class="blog-article-author-details">
 						<h4>ثبت نظر</h4><p>اگر سوال یا نظری در مورد مطلب بالا دارید در این قسمت مطرح نمایید. کارشناسان زاوش در اسرع وقت به سوال شما پاسخ داده و از طریق ایمیل به شما اطلاع رسانی خواهد شد</p>
@@ -180,18 +195,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="tag-box">
-		<span class="commentform-title">مطالب مشابه</span>
-		<div class="other-service-list">
-			<div class="row">
-			@foreach (var page in Model.SidebarPages)
-			{
-					<div class="col-xs-6 other-service-item"><a href="/page/@page.UrlParameter">@page.Title</a></div>
-			}
-			<p class="clearfix"></p>
-			</div>
-			</div>
-	</div>
+
 </div>
 @section scripts{
     <script src="~/Scripts/UI/custom.js"></script>
