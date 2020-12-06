@@ -16,11 +16,19 @@ namespace ViewModels
             get { return menu.GetMenuData(); }
         }
 
-        public List<Page> FooterBlog
+        public List<FooterBlogItem> FooterBlog
         {
             get { return menu.GetFooterData(); }
         }
 
         public string Rate { get; set; }
+    }
+
+    public class FooterBlogItem
+    {
+        public string Title { get; set; }
+        public string UrlParameter { get; set; }
+        public string ImageUrl { get; set; }
+        public string CreationDateStr { get; set; }
     }
 }

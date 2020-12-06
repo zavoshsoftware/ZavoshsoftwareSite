@@ -25,13 +25,15 @@ namespace Helper
             List<PageListViewModel> sidebarPages = new List<PageListViewModel>();
             Guid serviceMenuPositionId = new Guid("A06BA1F6-69F3-424B-B629-69AC5EEC99A8");
 
-            List<PagePosition> pagePositions =
-                db.PagePositions.Where(current => current.PositionId == serviceMenuPositionId).OrderBy(current => current.Page.Order).ToList();
+           var pagePositions =
+                db.PagePositions.Where(current => current.PositionId == serviceMenuPositionId).OrderBy(current => current.Page.Order).Select(c=>new{ c.PageId}).ToList();
 
-            foreach (PagePosition pagePosition in pagePositions)
+            foreach (var pagePosition in pagePositions)
             {
-                Page page = db.Pages.FirstOrDefault(current => current.IsDelete == false && current.IsActive == true &&
-                        current.Id == pagePosition.PageId);
+                var page = db.Pages.Where(current =>
+                        current.Id == pagePosition.PageId && current.IsDelete == false && current.IsActive)
+                    .Select(c => new {c.Title, c.UrlParameter}).FirstOrDefault();
+
 
                 if (page != null)
                     sidebarPages.Add(new PageListViewModel()
@@ -45,17 +47,29 @@ namespace Helper
         }
 
 
-        public List<Page> GetFooterData()
+        public List<FooterBlogItem> GetFooterData()
         {
-            List<Page> pageList = new List<Page>();
-
             Guid pageGroupId = new Guid("ECD18815-6452-4A49-805D-A99533EFEE6E");
 
-            pageList = db.Pages.Where(current => current.IsDelete == false && current.IsActive == true &&
-                                                 current.PageGroup.ParentId == pageGroupId)
-                .OrderByDescending(current => current.CreationDate).Take(3).ToList();
+            var pageList = db.Pages.Where(current =>
+                    current.PageGroup.ParentId == pageGroupId && current.IsDelete == false && current.IsActive)
+                .OrderByDescending(current => current.CreationDate)
+                .Select(c => new {c.Title, c.UrlParameter, c.ImageUrl, c.CreationDate}).Take(3).ToList();
 
-            return pageList;
+            List<FooterBlogItem> footerBlogItems= new List<FooterBlogItem>();
+
+            foreach (var page in pageList)
+            {
+                footerBlogItems.Add(new FooterBlogItem()
+                {
+                    ImageUrl = page.ImageUrl,
+                    CreationDateStr = page.CreationDate.ToShortDateString(),
+                    UrlParameter = page.UrlParameter,
+                    Title = page.Title
+                });
+            }
+
+            return footerBlogItems;
         }
     }
 }

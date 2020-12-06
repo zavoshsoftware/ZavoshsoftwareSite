@@ -24,9 +24,15 @@ namespace ViewModels
     }
     public class CommentListItems
     {
-        public Comment  ParentCommnets { get; set; }
+        public CommentItem ParentCommnets { get; set; }
         public List<Comment> RespondComments { get; set; }
     }
 
-
+    public class CommentItem
+    {
+        public string FullName { get; set; }
+        public string CreationDateStr { get; set; }
+        public string Body { get; set; }
+        public Guid Id { get; set; }
+    }
 }

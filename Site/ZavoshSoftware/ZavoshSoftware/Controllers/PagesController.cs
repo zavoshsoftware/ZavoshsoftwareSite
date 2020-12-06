@@ -301,7 +301,7 @@ namespace ZavoshSoftware.Controllers
                 SidebarPages = GetSidebarPages(page.Id, page.PageGroupId),
                 Comments = ReturnComments(page.Id),
                 UrlParameter = page.UrlParameter,
-                Rate = ReturnRate(page),
+                // Rate = ReturnRate(page),
                 DateModified = page.LastModificationDate.ToString(),
                 Faqs = GetPageFaq(page.Id),
                 HasFaq = page.HasFaq,
@@ -385,14 +385,32 @@ namespace ZavoshSoftware.Controllers
         public List<CommentListItems> ReturnComments(Guid id)
         {
             List<CommentListItems> commnetList = new List<CommentListItems>();
-            List<Comment> comments = db.Comments.Where(current => current.PageId == id && current.IsDelete == false && current.IsActive == true && current.ParentId == null).ToList();
+
+          var comments = db.Comments
+                .Where(current => current.PageId == id && current.IsDelete == false && current.IsActive &&
+                                  current.ParentId == null).Select(c => new
+                {
+                    c.Name,
+                    c.Body,
+                    c.CreationDate,
+                    c.Id
+                }).ToList();
+
             foreach (var item in comments)
             {
+                CommentItem commentItem=new CommentItem()
+                {
+                    FullName = item.Name,
+                    Body = item.Body,
+                    CreationDateStr = item.CreationDate.ToShortDateString(),
+             Id = item.Id
+                };
+
+             
                 commnetList.Add(new CommentListItems
                 {
-                    ParentCommnets = item,
-                    RespondComments = db.Comments.Where(current => current.IsDelete == false
-&& current.IsActive == true && current.ParentId == item.Id).ToList()
+                    ParentCommnets = commentItem,
+                    RespondComments = db.Comments.Where(c=>c.ParentId==item.Id&&c.IsActive&&c.IsDelete==false).ToList()
                 });
             }
             return commnetList;
@@ -406,10 +424,15 @@ namespace ZavoshSoftware.Controllers
 
             if (pageGroupId != null)
             {
-                List<Page> pages = db.Pages
+                var pages = db.Pages
                     .Where(current =>
                         current.IsDelete == false && current.IsActive && current.PageGroupId == pageGroupId &&
-                        current.Id != currentPageId).OrderBy(current => current.Order).ToList();
+                        current.Id != currentPageId).OrderBy(current => current.Order).Select(c => new
+                        {
+                            c.Title,
+                            c.UrlParameter,
+                            c.ImageUrl
+                        }).ToList();
 
                 if (!pages.Any())
                 {
@@ -418,10 +441,15 @@ namespace ZavoshSoftware.Controllers
                     pages = db.Pages
                         .Where(current =>
                             current.IsDelete == false && current.IsActive == true && current.PageGroup.ParentId == serviceGuid &&
-                            current.Id != currentPageId).OrderBy(current => current.Order).ToList();
+                            current.Id != currentPageId).OrderBy(current => current.Order).Select(c => new
+                            {
+                                c.Title,
+                                c.UrlParameter,
+                                c.ImageUrl
+                            }).ToList();
                 }
 
-                foreach (Page page in pages)
+                foreach (var page in pages)
                 {
                     sidebarPages.Add(new PageListViewModel()
                     {
