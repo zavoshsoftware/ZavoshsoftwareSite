@@ -1,0 +1,78 @@
+﻿@{
+		Layout = null;
+}
+<!DOCTYPE html>
+<html lang="fa-IR">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,  initial-scale=1,  shrink-to-fit=no">
+	<link rel="preload" as="font" href="https://zavoshsoftware.com/assets/fonts/iransans/IRANSansWebFaNum.ttf" type="font/ttf" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://zavoshsoftware.com/Assets/fonts/IranSans/IRANSansWebFaNum.woff2" type="font/woff2" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://zavoshsoftware.com/assets/fonts/iransans/IRANSansWebFaNum.eot" type="font/eot" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://zavoshsoftware.com/assets/fontawesome/fonts/fontawesome-webfont.ttf" type="font/ttf" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://zavoshsoftware.com/assets/fontawesome/fonts/fontawesome-webfont.woff2" type="font/woff2" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://zavoshsoftware.com/Assets/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0" type="font/woff2" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://zavoshsoftware.com/assets/fontawesome/fonts/fontawesome-webfont.eot" type="font/eot" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://zavoshsoftware.com/assets/fontawesome/fonts/fontawesome.otf" type="font/otf" as="font" crossorigin="anonymous">
+	<title>@ViewBag.Title</title>
+	<meta name="description" content="@ViewBag.Description">
+	<link rel="canonical" href="@ViewBag.Canonical" />
+	<link rel="shortcut icon" href="/Images/icons/favicon.png" sizes="32x32">
+	<link rel="apple-touch-icon-precomposed" href="/Images/icons/apple-touch.png" sizes="199x199">
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'UA-126733695-1');
+	</script>
+	<meta property="og:title" content="@ViewBag.Title" />
+	<meta property="og:type" content="@ViewBag.ogType" />
+	<meta property="og:url" content="@ViewBag.ogUrl" />
+	<meta property="og:image" content="@ViewBag.ogImage" />
+	<meta property="og:description" content="@ViewBag.Description" />
+	<meta property="og:site_name" content="@ViewBag.ogSitename" />
+	@RenderSection("StructuredData", required: false)
+</head>
+
+<body>
+	@Html.Partial("FrontEndLayout/_MenuPartial")
+	<main>
+		<div class="content">
+			@RenderBody()
+		</div>
+	</main>
+	@Html.Partial("FrontEndLayout/_MenuPartial")
+	@Html.Partial("FrontEndLayout/_FooterPartial")
+<a id="go-top"><i class="miu-icon-circle_arrow-up_glyph"></i></a>
+@RenderSection("footerStyle", required: false)
+
+<script src="/Assets/js/jquery-2.1.3.min.js"></script>
+<script>
+	jQuery.event.special.touchstart = {
+		setup: function( _, ns, handle ){
+			this.addEventListener("touchstart", handle, { passive: true });
+		}
+	};
+</script>
+	<script src="/Assets/js/bootstrap.min.js"></script>
+	<script src="/Assets/js/viewport/jquery.viewport.js"></script>
+	<script src="/Assets/js/menu/hoverIntent.js"></script>
+	<script src="/Assets/js/menu/superfish.js"></script>
+	<script src="/Assets/js/fancybox/jquery.fancybox.pack.js"></script>
+	<script src="/Assets/js/revolutionslider/js/jquery.themepunch.tools.min.js"></script>
+	<script src="/Assets/js/revolutionslider/js/jquery.themepunch.revolution.min.js"></script>
+	<script src="/Assets/js/bxslider/jquery.bxslider.min.js"></script>
+	<script src="/Assets/js/parallax/jquery.parallax-scroll.min.js"></script>
+	<script src="/Assets/js/isotope/imagesloaded.pkgd.min.js"></script>
+	<script src="/Assets/js/placeholders/jquery.placeholder.min.js"></script>
+	<script src="/Assets/js/validate/jquery.validate.min.js"></script>
+	<script src="/Assets/js/counter/jQuerySimpleCounter.js"></script>
+	<script src="/Assets/js/ytplayer/jquery.mb.YTPlayer.js"></script>
+	<script src="/Assets/js/animations/wow.min.js"></script>
+	<script src="/Assets/js/custom.js"></script>
+	@RenderSection("scripts", required: false)
+	@RenderSection("ratingScripts", required: false)
+	 
+</body>
+</html>

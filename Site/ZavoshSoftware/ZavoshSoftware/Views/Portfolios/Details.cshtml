@@ -10,7 +10,6 @@
 }
 @section StructuredData
 {
-    
 	<script type="application/ld+json">
         {
         "@@context": "http://schema.org",
@@ -67,17 +66,11 @@
                 <div class="blog-article-details">
                     <span>@Model.Date</span>
                     <h1>@Model.Title</h1>
-                    <p>
-                        <i class="miu-icon-other_conversation_review_comment_bubble_talk_outline_stroke"></i>
-                    </p>
+                    <p><i class="miu-icon-other_conversation_review_comment_bubble_talk_outline_stroke"></i></p>
                 </div>
                 @Html.Raw(Model.Body)
                 <p class="url-box">
-                    <div class="row">
-                        <div class="col-md-3 rating-link">
-                            <a href="@Model.UrlAddress" target="_blank" rel="nofollow" class="btn btn-info">مشاهده وب سایت</a>
-                        </div>
-                    </div>
+                    <div class="row"><div class="col-md-12 rating-link"><span> آدرس سایت: @Model.UrlAddress</span></div></div>
                 </p>
             </div>
         </div>
