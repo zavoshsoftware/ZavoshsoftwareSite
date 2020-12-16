@@ -21,7 +21,7 @@ namespace Models
         public DbSet<Role> Roles { get; set; }
         public DbSet<Page> Pages { get; set; }
         public DbSet<PageGroup> PageGroups { get; set; }
-        public DbSet<Comment> Comments { get; set; }
+       public DbSet<Comment> Comments { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<PagePosition> PagePositions { get; set; }
         public DbSet<ContactUsForm> ContactUsForms { get; set; }

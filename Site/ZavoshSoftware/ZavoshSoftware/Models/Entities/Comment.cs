@@ -10,10 +10,7 @@ namespace Models
 {
     public class Comment:BaseEntity
     {
-        public Comment()
-        {
-            Comments=new System.Collections.Generic.List<Comment>();
-        }
+     
         [Display(Name = "نام")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمایید")]
         [MaxLength(200, ErrorMessage = "تعداد کاراکتر {0} نباید بیشتر از {1} باشد.")]
@@ -29,11 +26,10 @@ namespace Models
         [Column(TypeName = "ntext")]
         public string Body { get; set; }
 
-        public Guid? ParentId { get; set; }
+    
         [Display(Name = "فعال؟")]
         public bool IsActive { get; set; }
-        public Comment Parent { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
+     
 
 
         public Guid PageId { get; set; }
@@ -41,15 +37,15 @@ namespace Models
         internal class Configuration : EntityTypeConfiguration<Comment>
         {
             public Configuration()
-            {
-                HasOptional(p => p.Parent)
-                    .WithMany(t => t.Comments)
-                    .HasForeignKey(p => p.ParentId);
+            { 
 
                 HasRequired(p => p.Page)
                     .WithMany(t => t.Comments)
                     .HasForeignKey(p => p.PageId);
             }
         }
+
+        public string Response { get; set; }
+        public DateTime? ResponseDate { get; set; }
     }
 }

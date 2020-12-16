@@ -276,7 +276,7 @@ namespace ZavoshSoftware.Controllers
             }
 
             Page page = db.Pages.FirstOrDefault(current =>
-                current.UrlParameter == pageParam && current.IsDelete == false && current.IsActive == true);
+                current.UrlParameter == pageParam && current.IsDelete == false && current.IsActive);
 
             if (page == null)
             {
@@ -297,7 +297,7 @@ namespace ZavoshSoftware.Controllers
                 Date = GetDateStr(page.LastModificationDate),
                 ImageUrl = page.ImageUrl,
                 CommentCount = db.Comments.Count(current =>
-                    current.PageId == page.Id && current.IsActive == true && current.IsDelete == false),
+                    current.PageId == page.Id && current.IsActive && current.IsDelete == false),
                 SidebarPages = GetSidebarPages(page.Id, page.PageGroupId),
                 Comments = ReturnComments(page.Id),
                 UrlParameter = page.UrlParameter,
@@ -358,11 +358,27 @@ namespace ZavoshSoftware.Controllers
             return page.TitleTag;
         }
 
-        public List<Faq> GetPageFaq(Guid pageId)
+        public List<DetailFaqsViewModel> GetPageFaq(Guid pageId)
         {
-            List<Faq> faqs = db.Faqs.Where(current => current.PageId == pageId && current.IsDelete == false).OrderBy(current => current.Order)
-                .ToList();
+            var dbFaqs = db.Faqs.Where(current => current.PageId == pageId && current.IsDelete == false)
+                .OrderBy(current => current.Order)
+                .Select(c => new
+                {
+                    c.Question,
+                    c.Answer,
+                    c.Id
+                });
+            List<DetailFaqsViewModel> faqs = new List<DetailFaqsViewModel>();
 
+            foreach (var dbFaq in dbFaqs)
+            {
+                faqs.Add(new DetailFaqsViewModel()
+                {
+                    Id = dbFaq.Id,
+                    Answer = dbFaq.Answer,
+                    Question = dbFaq.Question
+                });
+            }
             return faqs;
         }
         public int ReturnRatingCount(Guid entityId)
@@ -386,31 +402,36 @@ namespace ZavoshSoftware.Controllers
         {
             List<CommentListItems> commnetList = new List<CommentListItems>();
 
-          var comments = db.Comments
-                .Where(current => current.PageId == id && current.IsDelete == false && current.IsActive &&
-                                  current.ParentId == null).Select(c => new
-                {
-                    c.Name,
-                    c.Body,
-                    c.CreationDate,
-                    c.Id
-                }).ToList();
+            var comments = db.Comments
+                  .Where(current => current.PageId == id && current.IsDelete == false && current.IsActive).Select(c => new
+                                    {
+                                        c.Name,
+                                        c.Body,
+                                        c.CreationDate,
+                                        c.Id,
+                                        c.Response,
+                                        c.ResponseDate
+                                    }).ToList();
 
             foreach (var item in comments)
             {
-                CommentItem commentItem=new CommentItem()
+                CommentItem commentItem = new CommentItem()
                 {
                     FullName = item.Name,
                     Body = item.Body,
                     CreationDateStr = item.CreationDate.ToShortDateString(),
-             Id = item.Id
+                    Id = item.Id
                 };
 
-             
+                string responserDate = "";
+                if (item.ResponseDate != null)
+                    responserDate = item.ResponseDate.Value.ToShortDateString();
+
                 commnetList.Add(new CommentListItems
                 {
                     ParentCommnets = commentItem,
-                    RespondComments = db.Comments.Where(c=>c.ParentId==item.Id&&c.IsActive&&c.IsDelete==false).ToList()
+                    Response = item.Response,
+                    ResponseDate = responserDate
                 });
             }
             return commnetList;
@@ -528,10 +549,7 @@ namespace ZavoshSoftware.Controllers
                 comment.PageId = new Guid(pageId);
                 comment.IsActive = false;
                 comment.CreationDate = DateTime.Now;
-                if (parentId != "")
-                {
-                    comment.ParentId = new Guid(parentId);
-                }
+               
 
                 db.Comments.Add(comment);
                 db.SaveChanges();
@@ -684,7 +702,7 @@ namespace ZavoshSoftware.Controllers
             return View(portfolio);
 
             //  List<Page> pages = GetPages(new Guid("EDEB818D-E965-4DEF-B855-17E04F40F1A6"));
-            return View(pages);
+            //  return View(pages);
         }
 
         public List<Page> GetPages(Guid positionId)
@@ -706,6 +724,6 @@ namespace ZavoshSoftware.Controllers
 
             return servicePages;
         }
-
+         
     }
 }

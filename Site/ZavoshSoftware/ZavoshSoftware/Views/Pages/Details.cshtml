@@ -6,7 +6,9 @@
     ViewBag.ogSitename = "شرکت زاوش";
     ViewBag.Title = Model.TitleTag;
 }
-@section footerStyle{<link href="~/Assets/css/style-service.min.css" rel="stylesheet" />
+@section footerStyle{
+<link href="~/Assets/css/bootstrapcollapse.css" rel="stylesheet" />
+	<link href="~/Assets/css/style-service.min.css" rel="stylesheet" />
 	<link href="~/Assets/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
 }
 @section StructuredData
@@ -40,10 +42,10 @@
         }
         }
     </script>
-  
-    @if (Model.Faqs.Count() == 3)
-    {
-        <script type="application/ld+json">
+
+	@if (Model.Faqs.Count() ==6)
+	{
+		<script type="application/ld+json">
             {
             "@@context": "https://schema.org",
             "@@type": "FAQPage",
@@ -69,10 +71,31 @@
             "@@type": "Answer",
             "text": "@Model.Faqs.Skip(2).FirstOrDefault().Answer"
             }
+            },{
+            "@@type": "Question",
+            "name": "@Model.Faqs.Skip(3).FirstOrDefault().Question",
+            "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "@Model.Faqs.Skip(3).FirstOrDefault().Answer"
+            }
+            },{
+            "@@type": "Question",
+            "name": "@Model.Faqs.Skip(4).FirstOrDefault().Question",
+            "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "@Model.Faqs.Skip(4).FirstOrDefault().Answer"
+            }
+            },{
+            "@@type": "Question",
+            "name": "@Model.Faqs.Skip(5).FirstOrDefault().Question",
+            "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "@Model.Faqs.Skip(5).FirstOrDefault().Answer"
+            }
             }]
             }
         </script>
-    }
+	}
 }
 <div id="page-header">
     <div class="container">
@@ -88,10 +111,11 @@
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8">
 			<div class="blog-article">
-				<div class="blog-article-thumbnail"><img src="@Model.ImageUrl" alt="@Model.Title"/>
+				<div class="blog-article-thumbnail">
+					<img src="@Model.ImageUrl" alt="@Model.Title" />
 				</div>
 				<div class="blog-article-details">
-					<span>@Model.Date</span> - 
+					<span>@Model.Date</span> -
 					<a href="#Comment">@Model.CommentCount نظر برای این مطلب ثبت شده است</a>
 					<h1>@Model.Title</h1>
 				</div>
@@ -99,12 +123,12 @@
 
 				@if (Model.HasFaq)
 				{
-					<h2 class="faq-section">@Model.FaqTitle</h2>
-					<p>در این قسمت سوالات متداولی که در رابطه با این مطلب وجود دارد را مشاهده می فرمایید.</p>
+						<h2 class="faq-section">@Model.FaqTitle</h2>
+						<p>در این قسمت سوالات متداولی که در رابطه با این مطلب وجود دارد را مشاهده می فرمایید.</p>
 					foreach (var faq in Model.Faqs)
 					{
-						<h3>@faq.Question</h3>
-						<p>@faq.Answer</p>
+								<h3>@faq.Question</h3>
+								<p>@faq.Answer</p>
 					}
 				}
 				<div class="tag-box">
@@ -114,88 +138,121 @@
 							<div class="row">
 								@foreach (var page in Model.SidebarPages)
 								{
-									<div class="col-xs-6 other-service-item"><a href="/page/@page.UrlParameter">@page.Title</a>
-									</div>
+										<div class="col-xs-6 other-service-item">
+											<a href="/page/@page.UrlParameter">@page.Title</a>
+										</div>
 								}
 								<p class="clearfix"></p>
 							</div>
 						</div>
 					</aside>
 				</div>
-				<div class="blog-article-author">
-					<div class="blog-article-author-details">
-						<h4>ثبت نظر</h4><p>اگر سوال یا نظری در مورد مطلب بالا دارید در این قسمت مطرح نمایید. کارشناسان زاوش در اسرع وقت به سوال شما پاسخ داده و از طریق ایمیل به شما اطلاع رسانی خواهد شد</p>
-					</div>
-				</div>
-				<section id="Comment">
-					<h3 class="commentlist-title">نظر (@Model.CommentCount)</h3>
-					<ul class="commentlist">
-						@foreach (var comment in Model.Comments)
-						{
-							<li class="comment even thread-even depth-1">
-								<div class="comment-body">
-									<div class="comment-meta">
-										<div class="comment-author vcard">
-											<img class="avatar avatar-80 photo" src="/Images/avatar.jpg" alt="" height='80' width='80'>
-											<span class="fn" href="#">@comment.ParentCommnets.FullName</span>
-										</div>
-										<div class="comment-metadata">
-											<span href="#">@comment.ParentCommnets.CreationDateStr</span>
-										</div>
-									</div>
-									<div class="comment-content">
-										<p>
-											@if (comment.ParentCommnets.Body != null)
-											{
-												@Html.Raw(comment.ParentCommnets.Body.Replace(Environment.NewLine, "<br/>"))
-											}
-										</p>
-									</div>
-									<div class="reply">
-										<a class="comment-reply-link" href="#" onClick="LeaveComment('@comment.ParentCommnets.Id');return false;" id="reply">پاسخ</a>
-									</div>
-								</div>
-								<ul>
-									@foreach (var respond in comment.RespondComments)
-									{
-										<li class="comment even thread-even depth-1">
-											<div class="comment-body">
-												<div class="comment-meta">
-													<div class="comment-author vcard">
-														<img class="avatar avatar-80 photo" src="/Images/avatar.jpg" alt="" height='80' width='80'>
-														<span class="fn" href="#">@respond.Name</span>
-													</div>
-													<div class="comment-metadata"><span href="#">@respond.CreationDate.ToShortDateString()</span>
-													</div>
-												</div>
-												<div class="comment-content">
-													<p>@Html.Raw(respond.Body)</p>
+				@if (Model.Faqs.Any())
+				{
+						<div class="faq">
+							<div class="panel-group" id="accordion">
+								<h3>سوالات متداول @Model.Title</h3>
+								@foreach (var faq in Model.Faqs)
+								{
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a data-toggle="collapse" data-parent="#accordion" href="#@faq.Id">
+														@faq.Question
+													</a>
+												</h4>
+											</div>
+											<div id="@faq.Id" class="panel-collapse collapse">
+												<div class="panel-body">
+													@faq.Answer
 												</div>
 											</div>
-										</li>
-									}
-								</ul>
-							</li>
-						}
-					</ul>
-					<div id="respond">
-						<span class="commentform-title" id="submit-comment">ثبت نظر</span>
-						<div class="alert alert-danger dir-rtl" id="errorDivQ"></div>
-						<div class="alert alert-success dir-rtl" id="SuccessDivQ">پیغام شما با موفقیت ثبت گردید، پس از تایید مدیر سایت نمایش داده خواهد شد.</div>
-						<div id="commentform">
-							<fieldset>
-								<p><label for="name">نام</label><input id="commentName" type="text" name="name" placeholder="نام"></p>
-								<p><label for="email">ایمیل</label><input id="commentEmail" type="text" name="email" placeholder="ایمیل">	</p>
-								<p><label for="message">نظر</label><textarea id="commentBody" name="message" rows="8" cols="25" placeholder="نظر"></textarea></p>
-								<p><input id="btnSubmitComment" class="btn btn-default" onclick="SubmitComment('@ViewBag.id');" type="button" name="button" value="ثبت نظر"></p>
-							</fieldset>
+										</div>
+								}
+							</div>
+						</div>
+				}
+
+					<div class="blog-article-author">
+						<div class="blog-article-author-details">
+							<h4>ثبت نظر</h4>
+							<p>اگر سوال یا نظری در مورد مطلب بالا دارید در این قسمت مطرح نمایید. کارشناسان زاوش در اسرع وقت به سوال شما پاسخ داده و از طریق ایمیل به شما اطلاع رسانی خواهد شد</p>
 						</div>
 					</div>
-				</section>
+					<section id="Comment">
+						<h3 class="commentlist-title">نظر (@Model.CommentCount)</h3>
+						<ul class="commentlist">
+							@foreach (var comment in Model.Comments)
+							{
+									<li class="comment even thread-even depth-1 parentcomment">
+										<div class="comment-body">
+											<div class="comment-meta">
+												<div class="comment-author vcard">
+													<img class="avatar avatar-80 photo" src="/Images/avatar.jpg" alt="" height='80' width='80'>
+													<span class="fn" href="#">@comment.ParentCommnets.FullName</span>
+												</div>
+												<div class="comment-metadata">
+													<span href="#">@comment.ParentCommnets.CreationDateStr</span>
+												</div>
+											</div>
+											<div class="comment-content">
+												<p>
+													@if (comment.ParentCommnets.Body != null)
+													{
+															@Html.Raw(comment.ParentCommnets.Body.Replace(Environment.NewLine, "<br/>"))
+}
+												</p>
+											</div>
+										</div>
+										@if (!string.IsNullOrEmpty(comment.Response))
+										{
+												<ul>
+													<li class="comment even thread-even depth-1">
+														<div class="comment-body">
+															<div class="comment-meta">
+																<div class="comment-author vcard">
+																	<img class="avatar avatar-80 photo" src="/Images/logo80.png" alt="زاوش" height='80' width='80'>
+																	<span class="fn" href="#">زاوش</span>
+																</div>
+																<div class="comment-metadata">
+																	<span href="#">@comment.ResponseDate</span>
+																</div>
+															</div>
+															<div class="comment-content">
+																<p>@Html.Raw(comment.Response)</p>
+															</div>
+														</div>
+													</li>
+												</ul>
+}
+									</li>
+							}
+						</ul>
+						<div id="respond">
+							<span class="commentform-title" id="submit-comment">ثبت نظر</span>
+							<div class="alert alert-danger dir-rtl" id="errorDivQ"></div>
+							<div class="alert alert-success dir-rtl" id="SuccessDivQ">پیغام شما با موفقیت ثبت گردید، پس از تایید مدیر سایت نمایش داده خواهد شد.</div>
+							<div id="commentform">
+								<fieldset>
+									<p>
+										<label for="name">نام</label><input id="commentName" type="text" name="name" placeholder="نام">
+									</p>
+									<p>
+										<label for="email">ایمیل</label><input id="commentEmail" type="text" name="email" placeholder="ایمیل">
+									</p>
+									<p>
+										<label for="message">نظر</label><textarea id="commentBody" name="message" rows="8" cols="25" placeholder="نظر"></textarea>
+									</p>
+									<p>
+										<input id="btnSubmitComment" class="btn btn-default" onclick="SubmitComment('@ViewBag.id');" type="button" name="button" value="ثبت نظر">
+									</p>
+								</fieldset>
+							</div>
+						</div>
+					</section>
 			</div>
 		</div>
 	</div>
-
 </div>
 @section scripts{
     <script src="~/Scripts/UI/custom.js"></script>

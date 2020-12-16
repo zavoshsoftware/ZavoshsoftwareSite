@@ -4977,9 +4977,17 @@ label {
 }
 
     .widget-latest-news ul li {
-        margin-bottom: 15px
+        margin-bottom: 15px;
+        padding-right: 22px;position: relative;
     }
-
+        .widget-latest-news ul li :before {
+            content: "\f00c"; /* FontAwesome Unicode */
+            font-family: FontAwesome;
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: #e7411b;
+        } 
         .widget-latest-news ul li:last-child {
             margin-bottom: 0
         }
@@ -4994,13 +5002,11 @@ label {
             border-bottom: 1px solid #d7d7d7;
             margin-bottom: 0;
             line-height: 20px;
-            margin-right: 100px;
             margin-bottom: 5px;
-            padding-bottom: 8px
+            padding-bottom: 8px;
         }
 
             .widget-latest-news ul li .news-title a {
-                color: #3b3e43;
                 font-weight: 600
             }
 

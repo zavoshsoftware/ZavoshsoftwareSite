@@ -16,7 +16,7 @@
 <ul>
 @foreach (var page in Model.FooterBlog)
 {
-<li><img src="@page.ImageUrl" alt="@page.Title" height="500px" width="800px"><p class="news-title"><a href="/page/@page.UrlParameter">@page.Title</a></p><p class="news-date">@page.CreationDateStr</p></li>
+<li><p class="news-title"><a href="/page/@page.UrlParameter">@page.Title</a></p></li>
 }
 </ul>
 </div>

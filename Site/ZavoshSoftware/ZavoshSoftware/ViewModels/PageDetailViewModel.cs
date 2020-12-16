@@ -18,14 +18,16 @@ namespace ViewModels
         public List<CommentListItems> Comments { get; set; }
         public string UrlParameter { get; set; }
         public string DateModified { get; set; }
-        public List<Faq> Faqs { get; set; }
+        public List<DetailFaqsViewModel> Faqs { get; set; }
         public string FaqTitle { get; set; }
         public bool HasFaq { get; set; }
     }
     public class CommentListItems
     {
+
         public CommentItem ParentCommnets { get; set; }
-        public List<Comment> RespondComments { get; set; }
+        public string Response { get; set; }
+        public string ResponseDate { get; set; }
     }
 
     public class CommentItem

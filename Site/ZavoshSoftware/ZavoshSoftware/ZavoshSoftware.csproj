@@ -202,6 +202,8 @@
     <Content Include="Assets\css\alternative-styles\green.css" />
     <Content Include="Assets\css\alternative-styles\yellow.css" />
     <Content Include="Assets\css\bootstrap-rtl.css" />
+    <Content Include="Assets\css\bootstrapcollapse - Copy.css" />
+    <Content Include="Assets\css\bootstrapcollapse.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\custom.css" />
     <Content Include="Assets\css\font-awesome.css" />
@@ -732,6 +734,7 @@
     <Content Include="Images\index\revolution-slider\slide-1-image-5.png" />
     <Content Include="Images\index\revolution-slider\slide-2-image-1.png" />
     <Content Include="Images\index\revolution-slider\slide-3-image-1.png" />
+    <Content Include="Images\logo80.png" />
     <Content Include="Images\logos\image-1.png" />
     <Content Include="Images\logos\image-2.png" />
     <Content Include="Images\logos\image-3.png" />
@@ -1170,6 +1173,18 @@
     <Compile Include="Migrations\202009081119087_V27.Designer.cs">
       <DependentUpon>202009081119087_V27.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012161921040_V28.cs" />
+    <Compile Include="Migrations\202012161921040_V28.Designer.cs">
+      <DependentUpon>202012161921040_V28.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012162038034_V29.cs" />
+    <Compile Include="Migrations\202012162038034_V29.Designer.cs">
+      <DependentUpon>202012162038034_V29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012162039348_V30.cs" />
+    <Compile Include="Migrations\202012162039348_V30.Designer.cs">
+      <DependentUpon>202012162039348_V30.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
@@ -1190,6 +1205,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
+    <Compile Include="ViewModels\DetailFaqsViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PortfolioDetailViewModel.cs" />
@@ -1394,8 +1410,6 @@
     <Content Include="Views\ContactUsForms\Edit.cshtml" />
     <Content Include="Views\ContactUsForms\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Comments\Delete.cshtml" />
-    <Content Include="Views\Comments\Index.cshtml" />
     <Content Include="Views\PortfolioGroups\Create.cshtml" />
     <Content Include="Views\PortfolioGroups\Delete.cshtml" />
     <Content Include="Views\PortfolioGroups\Details.cshtml" />
@@ -1424,6 +1438,10 @@
     <Content Include="Views\Blogs\Edit.cshtml" />
     <Content Include="Views\Blogs\Index.cshtml" />
     <Content Include="Views\Blogs\BlogList.cshtml" />
+    <Content Include="Views\Comments\Create.cshtml" />
+    <Content Include="Views\Comments\Delete.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1520,6 +1538,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009081119087_V27.resx">
       <DependentUpon>202009081119087_V27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012161921040_V28.resx">
+      <DependentUpon>202012161921040_V28.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012162038034_V29.resx">
+      <DependentUpon>202012162038034_V29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012162039348_V30.resx">
+      <DependentUpon>202012162039348_V30.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

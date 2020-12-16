@@ -15,18 +15,46 @@ namespace ZavoshSoftware.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
-        // GET: Comments
-        public ActionResult Index(Guid? id)
+        [Authorize(Roles = "Administrator")]
+
+        public ActionResult Index()
         {
-            List<Comment> comments = new List<Comment>();
-            if (id==null)
-             comments = db.Comments.Include(c => c.Page).Where(c=>c.IsDelete==false).OrderByDescending(c=>c.CreationDate).Include(c => c.Parent).Where(c=>c.IsDelete==false).OrderByDescending(c=>c.CreationDate).ToList();
-            else
-                comments = db.Comments.Include(c => c.Page).Where(c => c.IsDelete == false && c.Id==id).OrderByDescending(c => c.CreationDate).Include(c => c.Parent).Where(c => c.IsDelete == false).OrderByDescending(c => c.CreationDate).ToList();
+            var comments = db.Comments.Include(c => c.Page).Where(c=>c.IsDelete==false).OrderByDescending(c=>c.CreationDate);
             return View(comments.ToList());
         }
+         
 
-        public ActionResult Confirm(Guid? id)
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Create()
+        {
+            ViewBag.PageId = new SelectList(db.Pages, "Id", "Title");
+            return View();
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Name,Email,Body,IsActive,PageId,Response,ResponseDate,IsDelete,CreationDate,DeleteDate,LastModificationDate")] Comment comment)
+        {
+            if (ModelState.IsValid)
+            {
+				comment.IsDelete = false;
+				comment.CreationDate = DateTime.Now; 
+				comment.LastModificationDate = DateTime.Now; 
+				
+                comment.Id = Guid.NewGuid();
+                db.Comments.Add(comment);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.PageId = new SelectList(db.Pages, "Id", "Title", comment.PageId);
+            return View(comment);
+        }
+
+        // GET: Comments/Edit/5
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
@@ -37,35 +65,32 @@ namespace ZavoshSoftware.Controllers
             {
                 return HttpNotFound();
             }
-            else
-            {
-                comment.IsActive = true;
-                db.SaveChanges();
-
-            }
-            return RedirectToAction("Index");
+            ViewBag.PageId = new SelectList(db.Pages, "Id", "Title", comment.PageId);
+            return View(comment);
         }
-        public ActionResult NotConfirm(Guid? id)
+
+        // POST: Comments/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Edit([Bind(Include = "Id,Name,Email,Body,IsActive,PageId,Response,ResponseDate,IsDelete,CreationDate,DeleteDate,LastModificationDate")] Comment comment)
         {
-            if (id == null)
+            if (ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                comment.IsActive = false;
+				comment.IsDelete=false;
+				comment.LastModificationDate = DateTime.Now; 
+                db.Entry(comment).State = EntityState.Modified;
                 db.SaveChanges();
-
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            ViewBag.PageId = new SelectList(db.Pages, "Id", "Title", comment.PageId);
+            return View(comment);
         }
 
-     
+        // GET: Comments/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -82,6 +107,7 @@ namespace ZavoshSoftware.Controllers
 
         // POST: Comments/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
@@ -102,9 +128,8 @@ namespace ZavoshSoftware.Controllers
             base.Dispose(disposing);
         }
 
-
         [AllowAnonymous]
-        public ActionResult PostComment(string name, string email, string message,string pageId)
+        public ActionResult PostComment(string name, string email, string message, string pageId)
         {
             bool isEmail = Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
 
