@@ -35,7 +35,16 @@ namespace ZavoshSoftware.Controllers
             foreach (Page page in pages)
             {
                 var encoded = HttpUtility.UrlPathEncode("https://zavoshsoftware.com/page/" + page.UrlParameter);
-                AddToSiteMap(sm, encoded, 0.9D, Location.eChangeFrequency.weekly);
+
+                if (page.PageGroup.ParentId == new Guid("30FA953C-403F-4796-B787-528238A48100"))
+                {
+                    AddToSiteMap(sm, encoded, 0.9D, Location.eChangeFrequency.daily);
+                }
+                else
+                {
+                    AddToSiteMap(sm, encoded, 0.8D, Location.eChangeFrequency.weekly);
+                }
+
             }
         }
         public void PortfolioSiteMap(Sitemap sm)
@@ -45,7 +54,7 @@ namespace ZavoshSoftware.Controllers
             foreach (Portfolio portfolio in portfolios)
             {
                 var encoded = HttpUtility.UrlPathEncode("https://zavoshsoftware.com/Portfoliodetail/" + portfolio.UrlParameter);
-                AddToSiteMap(sm, encoded, 0.9D, Location.eChangeFrequency.monthly);
+                AddToSiteMap(sm, encoded, 0.7D, Location.eChangeFrequency.monthly);
             }
         }
         public void PortfolioGroupSiteMap(Sitemap sm)
@@ -55,7 +64,7 @@ namespace ZavoshSoftware.Controllers
             foreach (PortfolioGroup portfolioGroup in portfolioGroups)
             {
                 var encoded = HttpUtility.UrlPathEncode("https://zavoshsoftware.com/portfolio/" + portfolioGroup.UrlParameter);
-                AddToSiteMap(sm, encoded, 0.9D, Location.eChangeFrequency.weekly);
+                AddToSiteMap(sm, encoded, 0.7D, Location.eChangeFrequency.weekly);
             }
         }
         public void StaticPageSiteMap(Sitemap sm)
@@ -64,7 +73,7 @@ namespace ZavoshSoftware.Controllers
 
             AddToSiteMap(sm, "https://zavoshsoftware.com/portfolio", 0.7D, Location.eChangeFrequency.weekly);
 
-            AddToSiteMap(sm, "https://zavoshsoftware.com/contact", 0.3D, Location.eChangeFrequency.yearly);
+            AddToSiteMap(sm, "https://zavoshsoftware.com/contact", 0.5D, Location.eChangeFrequency.yearly);
         }
 
         public void AddToSiteMap(Sitemap sm, string url, double? priority, Location.eChangeFrequency frequency)
