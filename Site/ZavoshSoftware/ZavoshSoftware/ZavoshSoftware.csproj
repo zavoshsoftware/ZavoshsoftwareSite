@@ -209,6 +209,7 @@
     <Content Include="Assets\css\font-awesome.css" />
     <Content Include="Assets\css\pages-style-rtl.css" />
     <Content Include="Assets\css\pages-style.css" />
+    <Content Include="Assets\css\style-home-menu.css" />
     <Content Include="Assets\css\Style.css" />
     <Content Include="Assets\css\style-home.css" />
     <Content Include="Assets\css\style-service.min.css" />
@@ -1185,6 +1186,10 @@
     <Compile Include="Migrations\202012162039348_V30.Designer.cs">
       <DependentUpon>202012162039348_V30.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101080855306_V31.cs" />
+    <Compile Include="Migrations\202101080855306_V31.Designer.cs">
+      <DependentUpon>202101080855306_V31.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
@@ -1250,7 +1255,7 @@
     <Content Include="Views\Shared\FrontEndLayout\_FrontEndLayout.cshtml" />
     <Content Include="Views\Shared\FrontEndLayout\_MenuPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_Index.cshtml" />
     <Content Include="Scripts\kendo\2017.3.913\jquery.min.map" />
     <Content Include="Scripts\kendo\2017.3.913\kendo.all.min.js.map" />
     <Content Include="Scripts\kendo\2017.3.913\kendo.angular.min.js.map" />
@@ -1442,6 +1447,7 @@
     <Content Include="Views\Comments\Delete.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1547,6 +1553,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012162039348_V30.resx">
       <DependentUpon>202012162039348_V30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101080855306_V31.resx">
+      <DependentUpon>202101080855306_V31.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

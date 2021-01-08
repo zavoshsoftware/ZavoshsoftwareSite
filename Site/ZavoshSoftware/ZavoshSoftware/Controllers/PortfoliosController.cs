@@ -253,6 +253,12 @@ namespace ZavoshSoftware.Controllers
             {
                 return HttpNotFound();
             }
+            string urlAddress = null;
+
+            if (!string.IsNullOrEmpty(portfolio.AddressUrl))
+            {
+                urlAddress = "http://" + portfolio.AddressUrl;
+            }
             PortfolioDetailViewModel pageDetail = new PortfolioDetailViewModel()
             {
                 Title = portfolio.Title,
@@ -264,7 +270,7 @@ namespace ZavoshSoftware.Controllers
                 UrlParameter = portfolio.UrlParameter,
                 PortfolioGroupUrlParameter = portfolio.PortfolioGroup.UrlParameter,
                 PortfolioGroupTitle = portfolio.PortfolioGroup.Title,
-                UrlAddress = "http://" + portfolio.AddressUrl,
+                UrlAddress = urlAddress,
                 Rate = ReturnRate(portfolio),
                 DateModified = portfolio.LastModificationDate.ToString()
             };

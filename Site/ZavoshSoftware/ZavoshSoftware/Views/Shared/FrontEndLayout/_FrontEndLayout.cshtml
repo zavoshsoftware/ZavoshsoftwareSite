@@ -20,13 +20,6 @@
 	<link rel="canonical" href="@ViewBag.Canonical" />
 	<link rel="shortcut icon" href="/Images/icons/favicon.png" sizes="32x32">
 	<link rel="apple-touch-icon-precomposed" href="/Images/icons/apple-touch.png" sizes="199x199">
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126733695-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
-		gtag('config', 'UA-126733695-1');
-	</script>
 	<meta property="og:title" content="@ViewBag.Title" />
 	<meta property="og:type" content="@ViewBag.ogType" />
 	<meta property="og:url" content="@ViewBag.ogUrl" />
@@ -34,6 +27,7 @@
 	<meta property="og:description" content="@ViewBag.Description" />
 	<meta property="og:site_name" content="@ViewBag.ogSitename" />
 	@RenderSection("StructuredData", required: false)
+	<link href="~/Assets/css/style-home-menu.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -43,7 +37,6 @@
 			@RenderBody()
 		</div>
 	</main>
-	@Html.Partial("FrontEndLayout/_MenuPartial")
 	@Html.Partial("FrontEndLayout/_FooterPartial")
 <a id="go-top"><i class="miu-icon-circle_arrow-up_glyph"></i></a>
 @RenderSection("footerStyle", required: false)
@@ -59,22 +52,16 @@
 	 
 	<script src="/Assets/js/bootstrap.min.js"></script>
 	<script src="/Assets/js/viewport/jquery.viewport.js"></script>
-	<script src="/Assets/js/menu/hoverIntent.js"></script>
 	<script src="/Assets/js/menu/superfish.js"></script>
-	<script src="/Assets/js/fancybox/jquery.fancybox.pack.js"></script>
-	<script src="/Assets/js/revolutionslider/js/jquery.themepunch.tools.min.js"></script>
-	<script src="/Assets/js/revolutionslider/js/jquery.themepunch.revolution.min.js"></script>
-	<script src="/Assets/js/bxslider/jquery.bxslider.min.js"></script>
-	<script src="/Assets/js/parallax/jquery.parallax-scroll.min.js"></script>
-	<script src="/Assets/js/isotope/imagesloaded.pkgd.min.js"></script>
-	<script src="/Assets/js/placeholders/jquery.placeholder.min.js"></script>
-	<script src="/Assets/js/validate/jquery.validate.min.js"></script>
-	<script src="/Assets/js/counter/jQuerySimpleCounter.js"></script>
-	<script src="/Assets/js/ytplayer/jquery.mb.YTPlayer.js"></script>
-	<script src="/Assets/js/animations/wow.min.js"></script>
 	<script src="/Assets/js/custom.js"></script>
 	@RenderSection("scripts", required: false)
 	@RenderSection("ratingScripts", required: false)
-	 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126733695-1"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() { dataLayer.push(arguments); }
+	gtag('js', new Date());
+	gtag('config', 'UA-126733695-1');
+</script>
 </body>
 </html>

@@ -56,6 +56,15 @@
                 @Html.ValidationMessageFor(model => model.Page.Summery)
             </div>
         </div>
+			
+	    <div class="form-group">
+		    @Html.LabelFor(model => model.Page.SummeryInDetail, new { @class = "control-label col-md-2" })
+		    <div class="col-md-10">
+			    @Html.EditorFor(model => model.Page.SummeryInDetail)
+
+			    @Html.ValidationMessageFor(model => model.Page.SummeryInDetail)
+		    </div>
+	    </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Page.Body, new { @class = "control-label col-md-2" })

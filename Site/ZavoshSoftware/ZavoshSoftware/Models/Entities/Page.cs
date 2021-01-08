@@ -32,6 +32,14 @@ namespace Models
         [DataType(DataType.MultilineText)]
         public string Summery { get; set; }
 
+
+        [Display(Name = "خلاصه مطلب جهت نمایش در صفحه")]
+        [Column(TypeName = "ntext")]
+        [UIHint("RichText")]
+        [DataType(DataType.Html)]
+        [AllowHtml]
+        public string SummeryInDetail { get; set; }
+
         [Display(Name = "متن صفحه")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمایید")]
         [Column(TypeName = "ntext")]

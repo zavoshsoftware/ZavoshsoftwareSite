@@ -24,18 +24,39 @@ namespace ZavoshSoftware.Controllers
 
                 DetailServicePages = GetPages(new Guid("28B4C30B-F5E4-4C82-A67E-9109E9F28CD1")),
 
-                BlogList = GetPagesByGroup(new Guid("ECD18815-6452-4A49-805D-A99533EFEE6E"))
-                    .OrderByDescending(current => current.CreationDate).Take(3).ToList(),
+                BlogList = GetPagesByGroup(new Guid("ECD18815-6452-4A49-805D-A99533EFEE6E")).Take(3).ToList(),
 
-                PortfolioList =
-                    db.Portfolios.Where(current => current.IsInHome && current.IsActive && current.IsDelete == false)
-                        .Take(3).ToList()
+                PortfolioList = GetHomePortfolio()
+
             };
-            ViewBag.Canonical = "https://zavoshsoftware.com/";
-
             return View(home);
         }
 
+        public List<PortfolioItemViewModel> GetHomePortfolio()
+        {
+            var portfolios = db.Portfolios
+                .Where(current => current.IsInHome && current.IsActive && current.IsDelete == false).Select(c=>new
+                {
+                    c.Title,
+                    c.UrlParameter,
+                    c.ImageUrl
+                })
+                .Take(3);
+
+            List<PortfolioItemViewModel> result = new List<PortfolioItemViewModel>();
+
+            foreach (var portfolio in portfolios)
+            {
+                result.Add(new PortfolioItemViewModel()
+                {
+                    ImageUrl = portfolio.ImageUrl,
+                    UrlParameter = portfolio.UrlParameter,
+                    Title = portfolio.Title
+                });
+            }
+
+            return result;
+        }
         public List<Page> GetPages(Guid positionId)
         {
             List<Page> servicePages = new List<Page>();
@@ -56,13 +77,36 @@ namespace ZavoshSoftware.Controllers
             return servicePages;
         }
 
-        public List<Page> GetPagesByGroup(Guid pageGroupId)
+        public List<PageItemViewModel>  GetPagesByGroup(Guid pageGroupId)
         {
 
-            List<Page> pages = db.Pages.Where(current => current.IsDelete == false && current.IsActive == true &&
-                                                         current.PageGroup.ParentId == pageGroupId).ToList();
+            var pages = db.Pages.Where(current => current.PageGroup.ParentId == pageGroupId&& current.IsDelete == false 
+                                                          && current.IsActive)
+                                                         .OrderByDescending(c=>c.CreationDate)
+                                                         .Select(c=>new
+            {
+                c.Title,
+                c.UrlParameter,
+                c.Summery,
+                c.ImageUrl,
+                c.CreationDate
+            });
 
-            return pages;
+            List<PageItemViewModel> result= new List<PageItemViewModel>();
+
+            foreach (var page in pages)
+            {
+                result.Add(new PageItemViewModel()
+                {
+                    ImageUrl = page.ImageUrl,
+                    Title = page.Title,
+                    UrlParameter = page.UrlParameter,
+                    Summery = page.Summery,
+                    CreationDate = page.CreationDate
+                });
+            }
+
+            return result;
         }
 
 

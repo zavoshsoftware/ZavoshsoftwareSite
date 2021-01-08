@@ -69,9 +69,14 @@
                     <p><i class="miu-icon-other_conversation_review_comment_bubble_talk_outline_stroke"></i></p>
                 </div>
                 @Html.Raw(Model.Body)
-                <p class="url-box">
-                    <div class="row"><div class="col-md-12 rating-link"><span> آدرس سایت: @Model.UrlAddress</span></div></div>
-                </p>
+	            <p class="url-box">
+		            @if (!string.IsNullOrEmpty(Model.UrlAddress)) { 
+			            <div class="row">
+				            <div class="col-md-12 rating-link"><span> آدرس: @Model.UrlAddress</span>
+				            </div>
+			            </div>
+		            }
+	            </p>
             </div>
         </div>
         <div class="col-sm-4">

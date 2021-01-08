@@ -23,7 +23,7 @@ namespace ZavoshSoftware.Controllers
 
         public ActionResult Index()
         {
-            var pages = db.Pages.Include(p => p.PageGroup).Where(p => p.IsDelete == false).OrderBy(p => p.Order);
+            var pages = db.Pages.Include(p => p.PageGroup).Where(p => p.IsDelete == false).OrderByDescending(p => p.CreationDate);
             return View(pages.ToList());
         }
 
@@ -306,7 +306,8 @@ namespace ZavoshSoftware.Controllers
                 Faqs = GetPageFaq(page.Id),
                 HasFaq = page.HasFaq,
                 FaqTitle = page.FaqTitle,
-                TitleTag = GetTitleTag(page)
+                TitleTag = GetTitleTag(page),
+                SummeryInDetail = page.SummeryInDetail
             };
 
             ViewBag.id = page.Id;
@@ -498,17 +499,17 @@ namespace ZavoshSoftware.Controllers
 
             if (pageGroupParam == null)
             {
-                Pages = db.Pages.Where(current =>
-                    current.IsActive == true && current.IsDelete == false &&
-                    current.PageGroup.ParentId == pageGroupId).ToList();
+                Pages = db.Pages.Where(current => current.PageGroup.ParentId == pageGroupId&&
+                    current.IsActive && current.IsDelete == false 
+                    ).OrderByDescending(c=>c.CreationDate).ToList();
                 body = "";
                 title = "مطالب وبلاگ";
             }
             else
             {
-                Pages = db.Pages.Where(current =>
-                    current.IsActive == true && current.IsDelete == false &&
-                    current.PageGroup.UrlParameter == pageGroupParam).ToList();
+                Pages = db.Pages.Where(current => current.PageGroup.UrlParameter == pageGroupParam&&
+                    current.IsActive && current.IsDelete == false 
+                   ).OrderByDescending(c => c.CreationDate).ToList();
 
                 PageGroup pageGroup = db.PageGroups.FirstOrDefault(current => current.UrlParameter == pageGroupParam);
 
@@ -724,6 +725,18 @@ namespace ZavoshSoftware.Controllers
 
             return servicePages;
         }
-         
+
+
+        public void updateSummery()
+        {
+            List<Page> pages = db.Pages.ToList();
+
+            foreach (Page page in pages)
+            {
+                page.SummeryInDetail = page.Summery;
+
+                db.SaveChanges();
+            }
+        }
     }
 }
