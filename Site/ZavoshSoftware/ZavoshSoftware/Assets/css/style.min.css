@@ -21532,3 +21532,15 @@ span.creation-date {
 .blog-article h2 {
     color: #e7411b;
 }
+.certificate {
+    float: right;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    min-height: 120px;
+    margin-left: 10px
+}
+
+    .certificate img {
+        width: 100px;
+    }

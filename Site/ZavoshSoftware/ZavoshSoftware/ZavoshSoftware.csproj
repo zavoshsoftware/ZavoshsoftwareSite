@@ -735,6 +735,8 @@
     <Content Include="Images\index\revolution-slider\slide-1-image-5.png" />
     <Content Include="Images\index\revolution-slider\slide-2-image-1.png" />
     <Content Include="Images\index\revolution-slider\slide-3-image-1.png" />
+    <Content Include="Images\logo-enamad.png" />
+    <Content Include="Images\logo-samandehi.png" />
     <Content Include="Images\logo80.png" />
     <Content Include="Images\logos\image-1.png" />
     <Content Include="Images\logos\image-2.png" />

@@ -268,6 +268,9 @@ namespace ZavoshSoftware.Controllers
         [AllowAnonymous]
         public ActionResult Details(string pageParam)
         {
+            if (pageParam == "طراحی-سایت-شرکتی")
+                return RedirectPermanent("/page/طراحی-وب-سایت");
+
             MenuData menu = new MenuData();
 
             if (pageParam == null)
@@ -727,16 +730,5 @@ namespace ZavoshSoftware.Controllers
         }
 
 
-        public void updateSummery()
-        {
-            List<Page> pages = db.Pages.ToList();
-
-            foreach (Page page in pages)
-            {
-                page.SummeryInDetail = page.Summery;
-
-                db.SaveChanges();
-            }
-        }
     }
 }
