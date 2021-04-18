@@ -28,6 +28,12 @@
 	<meta property="og:site_name" content="@ViewBag.ogSitename" />
 	@RenderSection("StructuredData", required: false)
 	<link href="~/Assets/css/style-home-menu.css" rel="stylesheet" />
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'UA-126733695-1');
+	</script>
 </head>
 
 <body>
@@ -56,11 +62,5 @@
 	<script src="/Assets/js/custom.js"></script>
 	@RenderSection("scripts", required: false)
 	@RenderSection("ratingScripts", required: false)
-<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag() { dataLayer.push(arguments); }
-	gtag('js', new Date());
-	gtag('config', 'UA-126733695-1');
-</script>
 </body>
 </html>

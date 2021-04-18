@@ -11,10 +11,10 @@ namespace ViewModels
     {
 
         MenuData menu = new MenuData();
-        public List<PageListViewModel> MenuServicePages
-        {
-            get { return menu.GetMenuData(); }
-        }
+        //public List<PageListViewModel> MenuServicePages
+        //{
+        //    get { return menu.GetMenuData(); }
+        //}
 
         public List<FooterBlogItem> FooterBlog
         {

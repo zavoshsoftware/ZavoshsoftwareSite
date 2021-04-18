@@ -134,6 +134,10 @@ namespace ZavoshSoftware.Controllers
             return Redirect("/");
         }
 
-
+       
+        public ActionResult TestApi()
+        {
+            return View();
+        }
     }
 }
