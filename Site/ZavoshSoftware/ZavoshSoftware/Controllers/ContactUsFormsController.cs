@@ -11,7 +11,7 @@ using Models;
 
 namespace ZavoshSoftware.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    //[Authorize(Roles = "Administrator")]
     public class ContactUsFormsController : Controller
     {
         private DatabaseContext db = new DatabaseContext();
@@ -19,7 +19,7 @@ namespace ZavoshSoftware.Controllers
         // GET: ContactUsForms
         public ActionResult Index()
         {
-            return View(db.ContactUsForms.Where(a=>a.IsDelete==false).OrderByDescending(a=>a.CreationDate).ToList());
+            return View(db.ContactUsForms.Where(a => a.IsDelete == false).OrderByDescending(a => a.CreationDate).ToList());
         }
 
         // GET: ContactUsForms/Details/5
@@ -52,10 +52,10 @@ namespace ZavoshSoftware.Controllers
         {
             if (ModelState.IsValid)
             {
-				contactUsForm.IsDelete = false;
-				contactUsForm.CreationDate = DateTime.Now; 
-				contactUsForm.LastModificationDate = DateTime.Now; 
-				
+                contactUsForm.IsDelete = false;
+                contactUsForm.CreationDate = DateTime.Now;
+                contactUsForm.LastModificationDate = DateTime.Now;
+
                 contactUsForm.Id = Guid.NewGuid();
                 db.ContactUsForms.Add(contactUsForm);
                 db.SaveChanges();
@@ -89,8 +89,8 @@ namespace ZavoshSoftware.Controllers
         {
             if (ModelState.IsValid)
             {
-				contactUsForm.IsDelete=false;
-				contactUsForm.LastModificationDate = DateTime.Now; 
+                contactUsForm.IsDelete = false;
+                contactUsForm.LastModificationDate = DateTime.Now;
                 db.Entry(contactUsForm).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -119,9 +119,9 @@ namespace ZavoshSoftware.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             ContactUsForm contactUsForm = db.ContactUsForms.Find(id);
-			contactUsForm.IsDelete=true;
-			contactUsForm.DeleteDate=DateTime.Now;
- 
+            contactUsForm.IsDelete = true;
+            contactUsForm.DeleteDate = DateTime.Now;
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -135,30 +135,6 @@ namespace ZavoshSoftware.Controllers
             base.Dispose(disposing);
         }
 
-        [AllowAnonymous]
-        public ActionResult SubmitContactForm(string Name, string Email, string Message)
-        {
-            bool isEmail = Regex.IsMatch(Email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
-
-            if (isEmail)
-            {
-                ContactUsForm cf = new ContactUsForm();
-                cf.Id = Guid.NewGuid();
-                cf.Email = Email;
-                cf.IsDelete = false;
-                cf.Message = Message;
-                cf.Name = Name;
-                cf.CreationDate = DateTime.Now;
-                cf.Ip= Request.UserHostAddress;
-
-                db.ContactUsForms.Add(cf);
-                db.SaveChanges();
-
-                return Json("true", JsonRequestBehavior.AllowGet);
-            }
-            else
-                return Json("false", JsonRequestBehavior.AllowGet);
-
-        }
+     
     }
 }

@@ -562,6 +562,42 @@ namespace ZavoshSoftware.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPost]
+        public ActionResult SubmitContactForm(string name, string email, string message)
+        {
+            try
+            {
+
+                bool isEmail = Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
+
+                if (isEmail)
+                {
+                    ContactUsForm cf = new ContactUsForm();
+                    cf.Id = Guid.NewGuid();
+                    cf.Email = email;
+                    cf.IsDelete = false;
+                    cf.Message = message;
+                    cf.Name = name;
+                    cf.CreationDate = DateTime.Now;
+                    cf.Ip = Request.UserHostAddress;
+
+                    db.ContactUsForms.Add(cf);
+                    db.SaveChanges();
+
+                    return Json("true", JsonRequestBehavior.AllowGet);
+                }
+                else
+                    return Json("false", JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception e)
+            {
+                return Json("falsecatch", JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+        [AllowAnonymous]
         public ActionResult teststar(string rateStar, string id)
         {
 

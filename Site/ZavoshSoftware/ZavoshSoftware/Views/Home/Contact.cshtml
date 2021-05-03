@@ -23,9 +23,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-
             <div class="headline style-3">
-              
                 <h2>با ما در تماس باشید</h2>
                 <p>از طریق راه های ارتباطی زیر می توانید با ما در تماس باشید و در صورتی که سوالی دارید می توانید از طریق فرم زیر سوالات خود را بپرسید.</p>
             </div>
@@ -43,7 +41,7 @@
 									<input class="col-xs-12" id="name" type="text" name="name" placeholder="نام">
 									<input class="col-xs-12" id="email" type="text" name="email" placeholder="ایمیل">
 									<textarea class="col-xs-12" id="message" name="message" rows="8" cols="25" placeholder="متن پیغام"></textarea>
-									<input class="btn btn-default" id="submit" type="button" value="ثبت">
+									<button class="btn btn-default"  type="button" onclick="submitContact();">ثبت</button>
 									</fieldset>
             </div>
 
@@ -56,9 +54,8 @@
 	                    تهران، اشرفی اسفهانی، پایین تر از میدان پونک، خیابان خوش طینت، پلاک 5، طبقه سوم
                     </li>
                     <li>
-                        <span>تلفن</span>
-                        0098-21-26910970<br>
-                        @*0098-21-22805105*@
+	                    <span>تلفن</span>
+	                    <a href="tel:+982144897916">021-44897916</a><br /><a href="tel:+982126910970">021-26910970</a>
                     </li>
                     <li>
                         <span>E-mail</span>
@@ -75,39 +72,38 @@
 
 @section scripts
 {
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#submit").click(function () {
-                var nameVal = $('#name').val();
-                var emailVal = $('#email').val();
-                var messageVal = $('#message').val();
 
-                if (nameVal !== "" && messageVal !== "" && emailVal!=="") {
-                    $.ajax(
-                        {
-                            url: "/ContactUsForms/SubmitContactForm",
-                            data: { Name: nameVal, Email: emailVal, Message: messageVal },
-                            type: "GET"
-                        }).done(function (result) {
-                        if (result == 'true') {
-                            $('#errorDivQ').css('display', 'none');
-                            $('#SuccessDivQ').css('display', 'block');
-                        }
-                        else
-                        {
-                            $('#errorDivQ').css('display', 'block');
-                            $('#SuccessDivQ').css('display', 'none');
-                            $('#errorDivQ').html('ایمیل وارد شده صحیح نمی باشد.');
-                        }
-                    });
-                }
-                else {
-                    $('#errorDivQ').css('display', 'block');
-                    $('#SuccessDivQ').css('display', 'none');
-                    $('#errorDivQ').html('تمامی فیلد های زیر را تکمیل نمایید.');
+	<script type="text/javascript">
 
-                }
-            });
-        });
-    </script>
+		function submitContact() {
+			var nameVal = $('#name').val();
+			var emailVal = $('#email').val();
+			var messageVal = $('#message').val();
+
+			if (nameVal !== "" && messageVal !== "" && emailVal !== "") {
+				$.ajax(
+					{
+						url: "/pages/SubmitContactForm",
+						data: { Name: nameVal, Email: emailVal, Message: messageVal },
+						type: "POST"
+
+					}).done(function(result) {
+					if (result === 'true') {
+						$('#errorDivQ').css('display', 'none');
+						$('#SuccessDivQ').css('display', 'block');
+					}
+					else if (result === 'false') {
+						$('#errorDivQ').css('display', 'block');
+						$('#SuccessDivQ').css('display', 'none');
+						$('#errorDivQ').html('ایمیل وارد شده صحیح نمی باشد.');
+					} else {
+						$('#errorDivQ').css('display', 'block');
+						$('#SuccessDivQ').css('display', 'none');
+						$('#errorDivQ').html('خطایی پیش آمده است.');
+					}
+				});
+
+			};
+		}
+	</script>
 }

@@ -21,7 +21,6 @@ namespace Models
 
         [Display(Name = "نام")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمایید")]
-        [MaxLength(300, ErrorMessage = "تعداد کاراکتر {0} نباید بیشتر از {1} باشد.")]
         [Column(TypeName = "ntext")]
         public string Message { get; set; }
 
